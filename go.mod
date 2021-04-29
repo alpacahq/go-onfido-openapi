@@ -1,4 +1,4 @@
-module github.com/alpacahq/go-onfido-openapi
+module github.com/alpacahq/go-onfido-openapi/v3.1.0
 
 go 1.13
 
