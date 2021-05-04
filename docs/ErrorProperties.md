@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
-**Fields** | Pointer to **map[string]map[string]interface{}** |  | [optional] 
+**Fields** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasMessage returns a boolean if a field has been set.
 
 ### GetFields
 
-`func (o *ErrorProperties) GetFields() map[string]map[string]interface{}`
+`func (o *ErrorProperties) GetFields() map[string]interface{}`
 
 GetFields returns the Fields field if non-nil, zero value otherwise.
 
 ### GetFieldsOk
 
-`func (o *ErrorProperties) GetFieldsOk() (*map[string]map[string]interface{}, bool)`
+`func (o *ErrorProperties) GetFieldsOk() (*map[string]interface{}, bool)`
 
 GetFieldsOk returns a tuple with the Fields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFields
 
-`func (o *ErrorProperties) SetFields(v map[string]map[string]interface{})`
+`func (o *ErrorProperties) SetFields(v map[string]interface{})`
 
 SetFields sets Fields field to given value.
 

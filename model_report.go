@@ -30,9 +30,9 @@ type Report struct {
 	// The sub_result of the report. It gives a more detailed result for document reports only, and will be null otherwise. Read-only.
 	SubResult *string `json:"sub_result,omitempty"`
 	// The details of the report. This is specific to each type of report. Read-only.
-	Breakdown *map[string]map[string]interface{} `json:"breakdown,omitempty"`
+	Breakdown *map[string]interface{} `json:"breakdown,omitempty"`
 	// The properties associated with the report, if any. Read-only.
-	Properties *map[string]map[string]interface{} `json:"properties,omitempty"`
+	Properties *map[string]interface{} `json:"properties,omitempty"`
 	// The ID of the check to which the report belongs. Read-only.
 	CheckId *string `json:"check_id,omitempty"`
 	// The name of the report type.
@@ -252,9 +252,9 @@ func (o *Report) SetSubResult(v string) {
 }
 
 // GetBreakdown returns the Breakdown field value if set, zero value otherwise.
-func (o *Report) GetBreakdown() map[string]map[string]interface{} {
+func (o *Report) GetBreakdown() map[string]interface{} {
 	if o == nil || o.Breakdown == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Breakdown
@@ -262,7 +262,7 @@ func (o *Report) GetBreakdown() map[string]map[string]interface{} {
 
 // GetBreakdownOk returns a tuple with the Breakdown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Report) GetBreakdownOk() (*map[string]map[string]interface{}, bool) {
+func (o *Report) GetBreakdownOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Breakdown == nil {
 		return nil, false
 	}
@@ -278,15 +278,15 @@ func (o *Report) HasBreakdown() bool {
 	return false
 }
 
-// SetBreakdown gets a reference to the given map[string]map[string]interface{} and assigns it to the Breakdown field.
-func (o *Report) SetBreakdown(v map[string]map[string]interface{}) {
+// SetBreakdown gets a reference to the given map[string]interface{} and assigns it to the Breakdown field.
+func (o *Report) SetBreakdown(v map[string]interface{}) {
 	o.Breakdown = &v
 }
 
 // GetProperties returns the Properties field value if set, zero value otherwise.
-func (o *Report) GetProperties() map[string]map[string]interface{} {
+func (o *Report) GetProperties() map[string]interface{} {
 	if o == nil || o.Properties == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Properties
@@ -294,7 +294,7 @@ func (o *Report) GetProperties() map[string]map[string]interface{} {
 
 // GetPropertiesOk returns a tuple with the Properties field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Report) GetPropertiesOk() (*map[string]map[string]interface{}, bool) {
+func (o *Report) GetPropertiesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Properties == nil {
 		return nil, false
 	}
@@ -310,8 +310,8 @@ func (o *Report) HasProperties() bool {
 	return false
 }
 
-// SetProperties gets a reference to the given map[string]map[string]interface{} and assigns it to the Properties field.
-func (o *Report) SetProperties(v map[string]map[string]interface{}) {
+// SetProperties gets a reference to the given map[string]interface{} and assigns it to the Properties field.
+func (o *Report) SetProperties(v map[string]interface{}) {
 	o.Properties = &v
 }
 

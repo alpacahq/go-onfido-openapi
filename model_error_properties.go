@@ -18,7 +18,7 @@ import (
 type ErrorProperties struct {
 	Type *string `json:"type,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Fields *map[string]map[string]interface{} `json:"fields,omitempty"`
+	Fields *map[string]interface{} `json:"fields,omitempty"`
 }
 
 // NewErrorProperties instantiates a new ErrorProperties object
@@ -103,9 +103,9 @@ func (o *ErrorProperties) SetMessage(v string) {
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.
-func (o *ErrorProperties) GetFields() map[string]map[string]interface{} {
+func (o *ErrorProperties) GetFields() map[string]interface{} {
 	if o == nil || o.Fields == nil {
-		var ret map[string]map[string]interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Fields
@@ -113,7 +113,7 @@ func (o *ErrorProperties) GetFields() map[string]map[string]interface{} {
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorProperties) GetFieldsOk() (*map[string]map[string]interface{}, bool) {
+func (o *ErrorProperties) GetFieldsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Fields == nil {
 		return nil, false
 	}
@@ -129,8 +129,8 @@ func (o *ErrorProperties) HasFields() bool {
 	return false
 }
 
-// SetFields gets a reference to the given map[string]map[string]interface{} and assigns it to the Fields field.
-func (o *ErrorProperties) SetFields(v map[string]map[string]interface{}) {
+// SetFields gets a reference to the given map[string]interface{} and assigns it to the Fields field.
+func (o *ErrorProperties) SetFields(v map[string]interface{}) {
 	o.Fields = &v
 }
 

@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Status** | Pointer to **string** | The current state of the report in the checking process. Read-only. | [optional] [readonly] 
 **Result** | Pointer to **string** | The result of the report. Read-only. | [optional] [readonly] 
 **SubResult** | Pointer to **string** | The sub_result of the report. It gives a more detailed result for document reports only, and will be null otherwise. Read-only. | [optional] [readonly] 
-**Breakdown** | Pointer to **map[string]map[string]interface{}** | The details of the report. This is specific to each type of report. Read-only. | [optional] [readonly] 
-**Properties** | Pointer to **map[string]map[string]interface{}** | The properties associated with the report, if any. Read-only. | [optional] [readonly] 
+**Breakdown** | Pointer to **map[string]interface{}** | The details of the report. This is specific to each type of report. Read-only. | [optional] [readonly] 
+**Properties** | Pointer to **map[string]interface{}** | The properties associated with the report, if any. Read-only. | [optional] [readonly] 
 **CheckId** | Pointer to **string** | The ID of the check to which the report belongs. Read-only. | [optional] [readonly] 
 **Name** | **string** | The name of the report type. | 
 **Documents** | Pointer to [**[]ReportDocument**](ReportDocument.md) | Array of objects with document ids that were used in the Onfido engine. [ONLY USED IN A DOCUMENT CHECK] | [optional] 
@@ -187,20 +187,20 @@ HasSubResult returns a boolean if a field has been set.
 
 ### GetBreakdown
 
-`func (o *Report) GetBreakdown() map[string]map[string]interface{}`
+`func (o *Report) GetBreakdown() map[string]interface{}`
 
 GetBreakdown returns the Breakdown field if non-nil, zero value otherwise.
 
 ### GetBreakdownOk
 
-`func (o *Report) GetBreakdownOk() (*map[string]map[string]interface{}, bool)`
+`func (o *Report) GetBreakdownOk() (*map[string]interface{}, bool)`
 
 GetBreakdownOk returns a tuple with the Breakdown field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBreakdown
 
-`func (o *Report) SetBreakdown(v map[string]map[string]interface{})`
+`func (o *Report) SetBreakdown(v map[string]interface{})`
 
 SetBreakdown sets Breakdown field to given value.
 
@@ -212,20 +212,20 @@ HasBreakdown returns a boolean if a field has been set.
 
 ### GetProperties
 
-`func (o *Report) GetProperties() map[string]map[string]interface{}`
+`func (o *Report) GetProperties() map[string]interface{}`
 
 GetProperties returns the Properties field if non-nil, zero value otherwise.
 
 ### GetPropertiesOk
 
-`func (o *Report) GetPropertiesOk() (*map[string]map[string]interface{}, bool)`
+`func (o *Report) GetPropertiesOk() (*map[string]interface{}, bool)`
 
 GetPropertiesOk returns a tuple with the Properties field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProperties
 
-`func (o *Report) SetProperties(v map[string]map[string]interface{})`
+`func (o *Report) SetProperties(v map[string]interface{})`
 
 SetProperties sets Properties field to given value.
 
