@@ -891,7 +891,7 @@ type ApiDownloadDocumentRequest struct {
 }
 
 
-func (r ApiDownloadDocumentRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r ApiDownloadDocumentRequest) Execute() ([]byte, *_nethttp.Response, error) {
 	return r.ApiService.DownloadDocumentExecute(r)
 }
 
@@ -913,14 +913,14 @@ func (a *DefaultApiService) DownloadDocument(ctx _context.Context, documentId st
  * Execute executes the request
  * @return *os.File
  */
-func (a *DefaultApiService) DownloadDocumentExecute(r ApiDownloadDocumentRequest) (*os.File, *_nethttp.Response, error) {
+func (a *DefaultApiService) DownloadDocumentExecute(r ApiDownloadDocumentRequest) ([]byte, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarReturnValue  []byte
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DownloadDocument")
@@ -998,16 +998,7 @@ func (a *DefaultApiService) DownloadDocumentExecute(r ApiDownloadDocumentRequest
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarBody, localVarHTTPResponse, nil
 }
 
 type ApiDownloadLivePhotoRequest struct {
@@ -4410,3 +4401,4 @@ func (a *DefaultApiService) UploadLivePhotoExecute(r ApiUploadLivePhotoRequest) 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
