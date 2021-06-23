@@ -16,8 +16,8 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 	"os"
+	"strings"
 )
 
 // Linger please
@@ -29,11 +29,10 @@ var (
 type DefaultApiService service
 
 type ApiCancelReportRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	reportId string
+	reportId   string
 }
-
 
 func (r ApiCancelReportRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.CancelReportExecute(r)
@@ -48,8 +47,8 @@ func (r ApiCancelReportRequest) Execute() (*_nethttp.Response, error) {
 func (a *DefaultApiService) CancelReport(ctx _context.Context, reportId string) ApiCancelReportRequest {
 	return ApiCancelReportRequest{
 		ApiService: a,
-		ctx: ctx,
-		reportId: reportId,
+		ctx:        ctx,
+		reportId:   reportId,
 	}
 }
 
@@ -130,13 +129,13 @@ func (a *DefaultApiService) CancelReportExecute(r ApiCancelReportRequest) (*_net
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -144,9 +143,9 @@ func (a *DefaultApiService) CancelReportExecute(r ApiCancelReportRequest) (*_net
 }
 
 type ApiCreateApplicantRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	applicant *Applicant
+	applicant  *Applicant
 }
 
 func (r ApiCreateApplicantRequest) Applicant(applicant Applicant) ApiCreateApplicantRequest {
@@ -166,7 +165,7 @@ func (r ApiCreateApplicantRequest) Execute() (Applicant, *_nethttp.Response, err
 func (a *DefaultApiService) CreateApplicant(ctx _context.Context) ApiCreateApplicantRequest {
 	return ApiCreateApplicantRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -253,13 +252,13 @@ func (a *DefaultApiService) CreateApplicantExecute(r ApiCreateApplicantRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -276,9 +275,9 @@ func (a *DefaultApiService) CreateApplicantExecute(r ApiCreateApplicantRequest) 
 }
 
 type ApiCreateCheckRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	check *Check
+	check      *Check
 }
 
 func (r ApiCreateCheckRequest) Check(check Check) ApiCreateCheckRequest {
@@ -298,7 +297,7 @@ func (r ApiCreateCheckRequest) Execute() (Check, *_nethttp.Response, error) {
 func (a *DefaultApiService) CreateCheck(ctx _context.Context) ApiCreateCheckRequest {
 	return ApiCreateCheckRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -385,13 +384,13 @@ func (a *DefaultApiService) CreateCheckExecute(r ApiCreateCheckRequest) (Check, 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -408,9 +407,9 @@ func (a *DefaultApiService) CreateCheckExecute(r ApiCreateCheckRequest) (Check, 
 }
 
 type ApiCreateWebhookRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	webhook *Webhook
+	webhook    *Webhook
 }
 
 func (r ApiCreateWebhookRequest) Webhook(webhook Webhook) ApiCreateWebhookRequest {
@@ -430,7 +429,7 @@ func (r ApiCreateWebhookRequest) Execute() (Webhook, *_nethttp.Response, error) 
 func (a *DefaultApiService) CreateWebhook(ctx _context.Context) ApiCreateWebhookRequest {
 	return ApiCreateWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -517,13 +516,13 @@ func (a *DefaultApiService) CreateWebhookExecute(r ApiCreateWebhookRequest) (Web
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -540,11 +539,10 @@ func (a *DefaultApiService) CreateWebhookExecute(r ApiCreateWebhookRequest) (Web
 }
 
 type ApiDeleteWebhookRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	webhookId string
+	webhookId  string
 }
-
 
 func (r ApiDeleteWebhookRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.DeleteWebhookExecute(r)
@@ -559,8 +557,8 @@ func (r ApiDeleteWebhookRequest) Execute() (*_nethttp.Response, error) {
 func (a *DefaultApiService) DeleteWebhook(ctx _context.Context, webhookId string) ApiDeleteWebhookRequest {
 	return ApiDeleteWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
-		webhookId: webhookId,
+		ctx:        ctx,
+		webhookId:  webhookId,
 	}
 }
 
@@ -641,13 +639,13 @@ func (a *DefaultApiService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*_n
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -655,11 +653,10 @@ func (a *DefaultApiService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*_n
 }
 
 type ApiDestroyApplicantRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId string
 }
-
 
 func (r ApiDestroyApplicantRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.DestroyApplicantExecute(r)
@@ -673,8 +670,8 @@ func (r ApiDestroyApplicantRequest) Execute() (*_nethttp.Response, error) {
  */
 func (a *DefaultApiService) DestroyApplicant(ctx _context.Context, applicantId string) ApiDestroyApplicantRequest {
 	return ApiDestroyApplicantRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		applicantId: applicantId,
 	}
 }
@@ -756,13 +753,13 @@ func (a *DefaultApiService) DestroyApplicantExecute(r ApiDestroyApplicantRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -770,11 +767,10 @@ func (a *DefaultApiService) DestroyApplicantExecute(r ApiDestroyApplicantRequest
 }
 
 type ApiDownloadCheckRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	checkId string
+	checkId    string
 }
-
 
 func (r ApiDownloadCheckRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.DownloadCheckExecute(r)
@@ -789,8 +785,8 @@ func (r ApiDownloadCheckRequest) Execute() (*_nethttp.Response, error) {
 func (a *DefaultApiService) DownloadCheck(ctx _context.Context, checkId string) ApiDownloadCheckRequest {
 	return ApiDownloadCheckRequest{
 		ApiService: a,
-		ctx: ctx,
-		checkId: checkId,
+		ctx:        ctx,
+		checkId:    checkId,
 	}
 }
 
@@ -871,13 +867,13 @@ func (a *DefaultApiService) DownloadCheckExecute(r ApiDownloadCheckRequest) (*_n
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -885,11 +881,10 @@ func (a *DefaultApiService) DownloadCheckExecute(r ApiDownloadCheckRequest) (*_n
 }
 
 type ApiDownloadDocumentRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 	documentId string
 }
-
 
 func (r ApiDownloadDocumentRequest) Execute() ([]byte, *_nethttp.Response, error) {
 	return r.ApiService.DownloadDocumentExecute(r)
@@ -904,7 +899,7 @@ func (r ApiDownloadDocumentRequest) Execute() ([]byte, *_nethttp.Response, error
 func (a *DefaultApiService) DownloadDocument(ctx _context.Context, documentId string) ApiDownloadDocumentRequest {
 	return ApiDownloadDocumentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		documentId: documentId,
 	}
 }
@@ -988,13 +983,13 @@ func (a *DefaultApiService) DownloadDocumentExecute(r ApiDownloadDocumentRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1002,13 +997,12 @@ func (a *DefaultApiService) DownloadDocumentExecute(r ApiDownloadDocumentRequest
 }
 
 type ApiDownloadLivePhotoRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	livePhotoId string
 }
 
-
-func (r ApiDownloadLivePhotoRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r ApiDownloadLivePhotoRequest) Execute() ([]byte, *_nethttp.Response, error) {
 	return r.ApiService.DownloadLivePhotoExecute(r)
 }
 
@@ -1021,8 +1015,8 @@ func (r ApiDownloadLivePhotoRequest) Execute() (*os.File, *_nethttp.Response, er
  */
 func (a *DefaultApiService) DownloadLivePhoto(ctx _context.Context, livePhotoId string) ApiDownloadLivePhotoRequest {
 	return ApiDownloadLivePhotoRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		livePhotoId: livePhotoId,
 	}
 }
@@ -1031,14 +1025,14 @@ func (a *DefaultApiService) DownloadLivePhoto(ctx _context.Context, livePhotoId 
  * Execute executes the request
  * @return *os.File
  */
-func (a *DefaultApiService) DownloadLivePhotoExecute(r ApiDownloadLivePhotoRequest) (*os.File, *_nethttp.Response, error) {
+func (a *DefaultApiService) DownloadLivePhotoExecute(r ApiDownloadLivePhotoRequest) ([]byte, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarReturnValue  []byte
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DownloadLivePhoto")
@@ -1106,34 +1100,24 @@ func (a *DefaultApiService) DownloadLivePhotoExecute(r ApiDownloadLivePhotoReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarBody, localVarHTTPResponse, nil
 }
 
 type ApiDownloadLiveVideoRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	liveVideoId string
 }
-
 
 func (r ApiDownloadLiveVideoRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	return r.ApiService.DownloadLiveVideoExecute(r)
@@ -1148,8 +1132,8 @@ func (r ApiDownloadLiveVideoRequest) Execute() (*os.File, *_nethttp.Response, er
  */
 func (a *DefaultApiService) DownloadLiveVideo(ctx _context.Context, liveVideoId string) ApiDownloadLiveVideoRequest {
 	return ApiDownloadLiveVideoRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		liveVideoId: liveVideoId,
 	}
 }
@@ -1233,13 +1217,13 @@ func (a *DefaultApiService) DownloadLiveVideoExecute(r ApiDownloadLiveVideoReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1256,11 +1240,10 @@ func (a *DefaultApiService) DownloadLiveVideoExecute(r ApiDownloadLiveVideoReque
 }
 
 type ApiDownloadLiveVideoFrameRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	liveVideoId string
 }
-
 
 func (r ApiDownloadLiveVideoFrameRequest) Execute() (*os.File, *_nethttp.Response, error) {
 	return r.ApiService.DownloadLiveVideoFrameExecute(r)
@@ -1275,8 +1258,8 @@ func (r ApiDownloadLiveVideoFrameRequest) Execute() (*os.File, *_nethttp.Respons
  */
 func (a *DefaultApiService) DownloadLiveVideoFrame(ctx _context.Context, liveVideoId string) ApiDownloadLiveVideoFrameRequest {
 	return ApiDownloadLiveVideoFrameRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		liveVideoId: liveVideoId,
 	}
 }
@@ -1360,13 +1343,13 @@ func (a *DefaultApiService) DownloadLiveVideoFrameExecute(r ApiDownloadLiveVideo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1383,10 +1366,10 @@ func (a *DefaultApiService) DownloadLiveVideoFrameExecute(r ApiDownloadLiveVideo
 }
 
 type ApiEditWebhookRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	webhookId string
-	webhook *Webhook
+	webhookId  string
+	webhook    *Webhook
 }
 
 func (r ApiEditWebhookRequest) Webhook(webhook Webhook) ApiEditWebhookRequest {
@@ -1407,8 +1390,8 @@ func (r ApiEditWebhookRequest) Execute() (Webhook, *_nethttp.Response, error) {
 func (a *DefaultApiService) EditWebhook(ctx _context.Context, webhookId string) ApiEditWebhookRequest {
 	return ApiEditWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
-		webhookId: webhookId,
+		ctx:        ctx,
+		webhookId:  webhookId,
 	}
 }
 
@@ -1496,13 +1479,13 @@ func (a *DefaultApiService) EditWebhookExecute(r ApiEditWebhookRequest) (Webhook
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1519,9 +1502,9 @@ func (a *DefaultApiService) EditWebhookExecute(r ApiEditWebhookRequest) (Webhook
 }
 
 type ApiFindAddressesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	postcode *string
+	postcode   *string
 }
 
 func (r ApiFindAddressesRequest) Postcode(postcode string) ApiFindAddressesRequest {
@@ -1541,7 +1524,7 @@ func (r ApiFindAddressesRequest) Execute() (AddressesList, *_nethttp.Response, e
 func (a *DefaultApiService) FindAddresses(ctx _context.Context) ApiFindAddressesRequest {
 	return ApiFindAddressesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -1627,13 +1610,13 @@ func (a *DefaultApiService) FindAddressesExecute(r ApiFindAddressesRequest) (Add
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1650,11 +1633,10 @@ func (a *DefaultApiService) FindAddressesExecute(r ApiFindAddressesRequest) (Add
 }
 
 type ApiFindApplicantRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId string
 }
-
 
 func (r ApiFindApplicantRequest) Execute() (Applicant, *_nethttp.Response, error) {
 	return r.ApiService.FindApplicantExecute(r)
@@ -1668,8 +1650,8 @@ func (r ApiFindApplicantRequest) Execute() (Applicant, *_nethttp.Response, error
  */
 func (a *DefaultApiService) FindApplicant(ctx _context.Context, applicantId string) ApiFindApplicantRequest {
 	return ApiFindApplicantRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		applicantId: applicantId,
 	}
 }
@@ -1753,13 +1735,13 @@ func (a *DefaultApiService) FindApplicantExecute(r ApiFindApplicantRequest) (App
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1776,11 +1758,10 @@ func (a *DefaultApiService) FindApplicantExecute(r ApiFindApplicantRequest) (App
 }
 
 type ApiFindCheckRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	checkId string
+	checkId    string
 }
-
 
 func (r ApiFindCheckRequest) Execute() (Check, *_nethttp.Response, error) {
 	return r.ApiService.FindCheckExecute(r)
@@ -1795,8 +1776,8 @@ func (r ApiFindCheckRequest) Execute() (Check, *_nethttp.Response, error) {
 func (a *DefaultApiService) FindCheck(ctx _context.Context, checkId string) ApiFindCheckRequest {
 	return ApiFindCheckRequest{
 		ApiService: a,
-		ctx: ctx,
-		checkId: checkId,
+		ctx:        ctx,
+		checkId:    checkId,
 	}
 }
 
@@ -1879,13 +1860,13 @@ func (a *DefaultApiService) FindCheckExecute(r ApiFindCheckRequest) (Check, *_ne
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -1902,11 +1883,10 @@ func (a *DefaultApiService) FindCheckExecute(r ApiFindCheckRequest) (Check, *_ne
 }
 
 type ApiFindDocumentRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 	documentId string
 }
-
 
 func (r ApiFindDocumentRequest) Execute() (Document, *_nethttp.Response, error) {
 	return r.ApiService.FindDocumentExecute(r)
@@ -1921,7 +1901,7 @@ func (r ApiFindDocumentRequest) Execute() (Document, *_nethttp.Response, error) 
 func (a *DefaultApiService) FindDocument(ctx _context.Context, documentId string) ApiFindDocumentRequest {
 	return ApiFindDocumentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		documentId: documentId,
 	}
 }
@@ -2005,13 +1985,13 @@ func (a *DefaultApiService) FindDocumentExecute(r ApiFindDocumentRequest) (Docum
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2028,11 +2008,10 @@ func (a *DefaultApiService) FindDocumentExecute(r ApiFindDocumentRequest) (Docum
 }
 
 type ApiFindLivePhotoRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	livePhotoId string
 }
-
 
 func (r ApiFindLivePhotoRequest) Execute() (LivePhoto, *_nethttp.Response, error) {
 	return r.ApiService.FindLivePhotoExecute(r)
@@ -2046,8 +2025,8 @@ func (r ApiFindLivePhotoRequest) Execute() (LivePhoto, *_nethttp.Response, error
  */
 func (a *DefaultApiService) FindLivePhoto(ctx _context.Context, livePhotoId string) ApiFindLivePhotoRequest {
 	return ApiFindLivePhotoRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		livePhotoId: livePhotoId,
 	}
 }
@@ -2131,13 +2110,13 @@ func (a *DefaultApiService) FindLivePhotoExecute(r ApiFindLivePhotoRequest) (Liv
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2154,11 +2133,10 @@ func (a *DefaultApiService) FindLivePhotoExecute(r ApiFindLivePhotoRequest) (Liv
 }
 
 type ApiFindLiveVideoRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	liveVideoId string
 }
-
 
 func (r ApiFindLiveVideoRequest) Execute() (LiveVideo, *_nethttp.Response, error) {
 	return r.ApiService.FindLiveVideoExecute(r)
@@ -2172,8 +2150,8 @@ func (r ApiFindLiveVideoRequest) Execute() (LiveVideo, *_nethttp.Response, error
  */
 func (a *DefaultApiService) FindLiveVideo(ctx _context.Context, liveVideoId string) ApiFindLiveVideoRequest {
 	return ApiFindLiveVideoRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		liveVideoId: liveVideoId,
 	}
 }
@@ -2257,13 +2235,13 @@ func (a *DefaultApiService) FindLiveVideoExecute(r ApiFindLiveVideoRequest) (Liv
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2280,11 +2258,10 @@ func (a *DefaultApiService) FindLiveVideoExecute(r ApiFindLiveVideoRequest) (Liv
 }
 
 type ApiFindReportRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	reportId string
+	reportId   string
 }
-
 
 func (r ApiFindReportRequest) Execute() (Report, *_nethttp.Response, error) {
 	return r.ApiService.FindReportExecute(r)
@@ -2299,8 +2276,8 @@ func (r ApiFindReportRequest) Execute() (Report, *_nethttp.Response, error) {
 func (a *DefaultApiService) FindReport(ctx _context.Context, reportId string) ApiFindReportRequest {
 	return ApiFindReportRequest{
 		ApiService: a,
-		ctx: ctx,
-		reportId: reportId,
+		ctx:        ctx,
+		reportId:   reportId,
 	}
 }
 
@@ -2383,13 +2360,13 @@ func (a *DefaultApiService) FindReportExecute(r ApiFindReportRequest) (Report, *
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2406,11 +2383,10 @@ func (a *DefaultApiService) FindReportExecute(r ApiFindReportRequest) (Report, *
 }
 
 type ApiFindWebhookRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	webhookId string
+	webhookId  string
 }
-
 
 func (r ApiFindWebhookRequest) Execute() (Webhook, *_nethttp.Response, error) {
 	return r.ApiService.FindWebhookExecute(r)
@@ -2425,8 +2401,8 @@ func (r ApiFindWebhookRequest) Execute() (Webhook, *_nethttp.Response, error) {
 func (a *DefaultApiService) FindWebhook(ctx _context.Context, webhookId string) ApiFindWebhookRequest {
 	return ApiFindWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
-		webhookId: webhookId,
+		ctx:        ctx,
+		webhookId:  webhookId,
 	}
 }
 
@@ -2509,13 +2485,13 @@ func (a *DefaultApiService) FindWebhookExecute(r ApiFindWebhookRequest) (Webhook
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2532,9 +2508,9 @@ func (a *DefaultApiService) FindWebhookExecute(r ApiFindWebhookRequest) (Webhook
 }
 
 type ApiGenerateSdkTokenRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	sdkToken *SdkToken
+	sdkToken   *SdkToken
 }
 
 func (r ApiGenerateSdkTokenRequest) SdkToken(sdkToken SdkToken) ApiGenerateSdkTokenRequest {
@@ -2554,7 +2530,7 @@ func (r ApiGenerateSdkTokenRequest) Execute() (SdkToken, *_nethttp.Response, err
 func (a *DefaultApiService) GenerateSdkToken(ctx _context.Context) ApiGenerateSdkTokenRequest {
 	return ApiGenerateSdkTokenRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -2641,13 +2617,13 @@ func (a *DefaultApiService) GenerateSdkTokenExecute(r ApiGenerateSdkTokenRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2664,10 +2640,10 @@ func (a *DefaultApiService) GenerateSdkTokenExecute(r ApiGenerateSdkTokenRequest
 }
 
 type ApiListApplicantsRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	page *int32
-	perPage *int32
+	ctx            _context.Context
+	ApiService     *DefaultApiService
+	page           *int32
+	perPage        *int32
 	includeDeleted *bool
 }
 
@@ -2696,7 +2672,7 @@ func (r ApiListApplicantsRequest) Execute() (ApplicantsList, *_nethttp.Response,
 func (a *DefaultApiService) ListApplicants(ctx _context.Context) ApiListApplicantsRequest {
 	return ApiListApplicantsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -2787,13 +2763,13 @@ func (a *DefaultApiService) ListApplicantsExecute(r ApiListApplicantsRequest) (A
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2810,8 +2786,8 @@ func (a *DefaultApiService) ListApplicantsExecute(r ApiListApplicantsRequest) (A
 }
 
 type ApiListChecksRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId *string
 }
 
@@ -2832,7 +2808,7 @@ func (r ApiListChecksRequest) Execute() (ChecksList, *_nethttp.Response, error) 
 func (a *DefaultApiService) ListChecks(ctx _context.Context) ApiListChecksRequest {
 	return ApiListChecksRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -2918,13 +2894,13 @@ func (a *DefaultApiService) ListChecksExecute(r ApiListChecksRequest) (ChecksLis
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2941,8 +2917,8 @@ func (a *DefaultApiService) ListChecksExecute(r ApiListChecksRequest) (ChecksLis
 }
 
 type ApiListDocumentsRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId *string
 }
 
@@ -2964,7 +2940,7 @@ func (r ApiListDocumentsRequest) Execute() (DocumentsList, *_nethttp.Response, e
 func (a *DefaultApiService) ListDocuments(ctx _context.Context) ApiListDocumentsRequest {
 	return ApiListDocumentsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3050,13 +3026,13 @@ func (a *DefaultApiService) ListDocumentsExecute(r ApiListDocumentsRequest) (Doc
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3073,8 +3049,8 @@ func (a *DefaultApiService) ListDocumentsExecute(r ApiListDocumentsRequest) (Doc
 }
 
 type ApiListLivePhotosRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId *string
 }
 
@@ -3095,7 +3071,7 @@ func (r ApiListLivePhotosRequest) Execute() (LivePhotosList, *_nethttp.Response,
 func (a *DefaultApiService) ListLivePhotos(ctx _context.Context) ApiListLivePhotosRequest {
 	return ApiListLivePhotosRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3181,13 +3157,13 @@ func (a *DefaultApiService) ListLivePhotosExecute(r ApiListLivePhotosRequest) (L
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3204,8 +3180,8 @@ func (a *DefaultApiService) ListLivePhotosExecute(r ApiListLivePhotosRequest) (L
 }
 
 type ApiListLiveVideosRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId *string
 }
 
@@ -3226,7 +3202,7 @@ func (r ApiListLiveVideosRequest) Execute() (LiveVideosList, *_nethttp.Response,
 func (a *DefaultApiService) ListLiveVideos(ctx _context.Context) ApiListLiveVideosRequest {
 	return ApiListLiveVideosRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3312,13 +3288,13 @@ func (a *DefaultApiService) ListLiveVideosExecute(r ApiListLiveVideosRequest) (L
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3335,9 +3311,9 @@ func (a *DefaultApiService) ListLiveVideosExecute(r ApiListLiveVideosRequest) (L
 }
 
 type ApiListReportsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	checkId *string
+	checkId    *string
 }
 
 func (r ApiListReportsRequest) CheckId(checkId string) ApiListReportsRequest {
@@ -3357,7 +3333,7 @@ func (r ApiListReportsRequest) Execute() (ReportsList, *_nethttp.Response, error
 func (a *DefaultApiService) ListReports(ctx _context.Context) ApiListReportsRequest {
 	return ApiListReportsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3443,13 +3419,13 @@ func (a *DefaultApiService) ListReportsExecute(r ApiListReportsRequest) (Reports
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3466,10 +3442,9 @@ func (a *DefaultApiService) ListReportsExecute(r ApiListReportsRequest) (Reports
 }
 
 type ApiListWebhooksRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
 }
-
 
 func (r ApiListWebhooksRequest) Execute() (WebhooksList, *_nethttp.Response, error) {
 	return r.ApiService.ListWebhooksExecute(r)
@@ -3483,7 +3458,7 @@ func (r ApiListWebhooksRequest) Execute() (WebhooksList, *_nethttp.Response, err
 func (a *DefaultApiService) ListWebhooks(ctx _context.Context) ApiListWebhooksRequest {
 	return ApiListWebhooksRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -3565,13 +3540,13 @@ func (a *DefaultApiService) ListWebhooksExecute(r ApiListWebhooksRequest) (Webho
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -3588,11 +3563,10 @@ func (a *DefaultApiService) ListWebhooksExecute(r ApiListWebhooksRequest) (Webho
 }
 
 type ApiRestoreApplicantRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId string
 }
-
 
 func (r ApiRestoreApplicantRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.RestoreApplicantExecute(r)
@@ -3606,8 +3580,8 @@ func (r ApiRestoreApplicantRequest) Execute() (*_nethttp.Response, error) {
  */
 func (a *DefaultApiService) RestoreApplicant(ctx _context.Context, applicantId string) ApiRestoreApplicantRequest {
 	return ApiRestoreApplicantRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		applicantId: applicantId,
 	}
 }
@@ -3689,13 +3663,13 @@ func (a *DefaultApiService) RestoreApplicantExecute(r ApiRestoreApplicantRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -3703,11 +3677,10 @@ func (a *DefaultApiService) RestoreApplicantExecute(r ApiRestoreApplicantRequest
 }
 
 type ApiResumeCheckRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	checkId string
+	checkId    string
 }
-
 
 func (r ApiResumeCheckRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.ResumeCheckExecute(r)
@@ -3722,8 +3695,8 @@ func (r ApiResumeCheckRequest) Execute() (*_nethttp.Response, error) {
 func (a *DefaultApiService) ResumeCheck(ctx _context.Context, checkId string) ApiResumeCheckRequest {
 	return ApiResumeCheckRequest{
 		ApiService: a,
-		ctx: ctx,
-		checkId: checkId,
+		ctx:        ctx,
+		checkId:    checkId,
 	}
 }
 
@@ -3804,13 +3777,13 @@ func (a *DefaultApiService) ResumeCheckExecute(r ApiResumeCheckRequest) (*_netht
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -3818,11 +3791,10 @@ func (a *DefaultApiService) ResumeCheckExecute(r ApiResumeCheckRequest) (*_netht
 }
 
 type ApiResumeReportRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *DefaultApiService
-	reportId string
+	reportId   string
 }
-
 
 func (r ApiResumeReportRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.ResumeReportExecute(r)
@@ -3837,8 +3809,8 @@ func (r ApiResumeReportRequest) Execute() (*_nethttp.Response, error) {
 func (a *DefaultApiService) ResumeReport(ctx _context.Context, reportId string) ApiResumeReportRequest {
 	return ApiResumeReportRequest{
 		ApiService: a,
-		ctx: ctx,
-		reportId: reportId,
+		ctx:        ctx,
+		reportId:   reportId,
 	}
 }
 
@@ -3919,13 +3891,13 @@ func (a *DefaultApiService) ResumeReportExecute(r ApiResumeReportRequest) (*_net
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 
@@ -3933,10 +3905,10 @@ func (a *DefaultApiService) ResumeReportExecute(r ApiResumeReportRequest) (*_net
 }
 
 type ApiUpdateApplicantRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
+	ctx         _context.Context
+	ApiService  *DefaultApiService
 	applicantId string
-	applicant *Applicant
+	applicant   *Applicant
 }
 
 func (r ApiUpdateApplicantRequest) Applicant(applicant Applicant) ApiUpdateApplicantRequest {
@@ -3956,11 +3928,11 @@ func (r ApiUpdateApplicantRequest) Execute() (Applicant, *_nethttp.Response, err
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicantId
  * @return ApiUpdateApplicantRequest
- */
+*/
 func (a *DefaultApiService) UpdateApplicant(ctx _context.Context, applicantId string) ApiUpdateApplicantRequest {
 	return ApiUpdateApplicantRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		applicantId: applicantId,
 	}
 }
@@ -4049,13 +4021,13 @@ func (a *DefaultApiService) UpdateApplicantExecute(r ApiUpdateApplicantRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -4072,12 +4044,12 @@ func (a *DefaultApiService) UpdateApplicantExecute(r ApiUpdateApplicantRequest) 
 }
 
 type ApiUploadDocumentRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	applicantId *string
-	type_ *string
-	file **os.File
-	side *string
+	ctx            _context.Context
+	ApiService     *DefaultApiService
+	applicantId    *string
+	type_          *string
+	file           **os.File
+	side           *string
 	issuingCountry *string
 }
 
@@ -4116,7 +4088,7 @@ func (r ApiUploadDocumentRequest) Execute() (Document, *_nethttp.Response, error
 func (a *DefaultApiService) UploadDocument(ctx _context.Context) ApiUploadDocumentRequest {
 	return ApiUploadDocumentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -4223,13 +4195,13 @@ func (a *DefaultApiService) UploadDocumentExecute(r ApiUploadDocumentRequest) (D
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -4246,10 +4218,10 @@ func (a *DefaultApiService) UploadDocumentExecute(r ApiUploadDocumentRequest) (D
 }
 
 type ApiUploadLivePhotoRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	applicantId *string
-	file **os.File
+	ctx                _context.Context
+	ApiService         *DefaultApiService
+	applicantId        *string
+	file               **os.File
 	advancedValidation *bool
 }
 
@@ -4280,7 +4252,7 @@ func (r ApiUploadLivePhotoRequest) Execute() (LivePhoto, *_nethttp.Response, err
 func (a *DefaultApiService) UploadLivePhoto(ctx _context.Context) ApiUploadLivePhotoRequest {
 	return ApiUploadLivePhotoRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
@@ -4380,13 +4352,13 @@ func (a *DefaultApiService) UploadLivePhotoExecute(r ApiUploadLivePhotoRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -4401,4 +4373,3 @@ func (a *DefaultApiService) UploadLivePhotoExecute(r ApiUploadLivePhotoRequest) 
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
