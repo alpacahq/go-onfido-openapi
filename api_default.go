@@ -772,7 +772,7 @@ type ApiDownloadCheckRequest struct {
 	checkId    string
 }
 
-func (r ApiDownloadCheckRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDownloadCheckRequest) Execute() ([]byte, *_nethttp.Response, error) {
 	return r.ApiService.DownloadCheckExecute(r)
 }
 
@@ -793,18 +793,19 @@ func (a *DefaultApiService) DownloadCheck(ctx _context.Context, checkId string) 
 /*
  * Execute executes the request
  */
-func (a *DefaultApiService) DownloadCheckExecute(r ApiDownloadCheckRequest) (*_nethttp.Response, error) {
+func (a *DefaultApiService) DownloadCheckExecute(r ApiDownloadCheckRequest) ([]byte, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []byte
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DownloadCheck")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/checks/{check_id}/download"
@@ -847,19 +848,19 @@ func (a *DefaultApiService) DownloadCheckExecute(r ApiDownloadCheckRequest) (*_n
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -871,13 +872,13 @@ func (a *DefaultApiService) DownloadCheckExecute(r ApiDownloadCheckRequest) (*_n
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	return localVarBody, localVarHTTPResponse, nil
 }
 
 type ApiDownloadDocumentRequest struct {
