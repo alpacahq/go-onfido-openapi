@@ -1228,15 +1228,6 @@ func (a *DefaultApiService) DownloadLiveVideoExecute(r ApiDownloadLiveVideoReque
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
 	return localVarBody, localVarHTTPResponse, nil
 }
 
