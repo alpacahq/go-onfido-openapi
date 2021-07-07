@@ -1120,7 +1120,7 @@ type ApiDownloadLiveVideoRequest struct {
 	liveVideoId string
 }
 
-func (r ApiDownloadLiveVideoRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r ApiDownloadLiveVideoRequest) Execute() ([]byte, *_nethttp.Response, error) {
 	return r.ApiService.DownloadLiveVideoExecute(r)
 }
 
@@ -1143,14 +1143,14 @@ func (a *DefaultApiService) DownloadLiveVideo(ctx _context.Context, liveVideoId 
  * Execute executes the request
  * @return *os.File
  */
-func (a *DefaultApiService) DownloadLiveVideoExecute(r ApiDownloadLiveVideoRequest) (*os.File, *_nethttp.Response, error) {
+func (a *DefaultApiService) DownloadLiveVideoExecute(r ApiDownloadLiveVideoRequest) ([]byte, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarReturnValue  []byte
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DownloadLiveVideo")
@@ -1228,16 +1228,7 @@ func (a *DefaultApiService) DownloadLiveVideoExecute(r ApiDownloadLiveVideoReque
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarBody, localVarHTTPResponse, nil
 }
 
 type ApiDownloadLiveVideoFrameRequest struct {
