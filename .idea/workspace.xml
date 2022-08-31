@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af79c1fa-1181-4315-b413-9e3db38243f1" name="Changes" comment="update onfido api version">
+    <list default="true" id="af79c1fa-1181-4315-b413-9e3db38243f1" name="Changes" comment="add location">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +78,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="inlay.hints" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="go-onfido-openapi" />
@@ -118,7 +123,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update dependencies" />
     <MESSAGE value="update onfido api version" />
-    <option name="LAST_COMMIT_MESSAGE" value="update onfido api version" />
+    <MESSAGE value="add location" />
+    <option name="LAST_COMMIT_MESSAGE" value="add location" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
