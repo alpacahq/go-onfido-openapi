@@ -105,7 +105,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api.{region}.onfido.com/v3.1",
+				URL: "https://api.{region}.onfido.com/v3.4",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"region": ServerVariable{
