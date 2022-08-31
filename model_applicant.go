@@ -37,6 +37,7 @@ type Applicant struct {
 	Dob *string `json:"dob,omitempty"`
 	Address *Address `json:"address,omitempty"`
 	IdNumbers *[]IdNumber `json:"id_numbers,omitempty"`
+	Location *Location `json:"location,omitempty"`
 }
 
 // NewApplicant instantiates a new Applicant object

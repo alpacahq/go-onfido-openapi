@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af79c1fa-1181-4315-b413-9e3db38243f1" name="Changes" comment="update dependencies">
-      <change beforePath="$PROJECT_DIR$/configuration.go" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.go" afterDir="false" />
+    <list default="true" id="af79c1fa-1181-4315-b413-9e3db38243f1" name="Changes" comment="update onfido api version">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +117,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="update dependencies" />
+    <MESSAGE value="update onfido api version" />
+    <option name="LAST_COMMIT_MESSAGE" value="update onfido api version" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
