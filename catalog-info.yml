@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: go-onfido-openapi
+  title: Go Onfido OpenAPI
+  description: Go API client for the Onfido API used to submit check requests. This client is generated from the Onfido OpenAPI specification using OpenAPI Generator.
+  tags:
+    - omega
+  annotations:
+    backstage.io/source-location: url:https://github.com/wallester/go-onfido-openapi/
+    github.com/project-slug: wallester/go-onfido-openapi
+    backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://wallester.slack.com/archives/C024BC3GP0B
+      title: Slack
+spec:
+  type: library
+  owner: group:default/omega
+  lifecycle: production
