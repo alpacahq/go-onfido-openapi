@@ -1,0 +1,213 @@
+# Workflow Runs are served from Onfido Public API v3.6 while the rest of this spec targets v3.1.
+# Path-level servers ensure generated clients call https://api.{region}.onfido.com/v3.6 for these operations only.
+workflow_runs:
+  servers:
+    - url: https://api.{region}.onfido.com/v3.6
+      variables:
+        region:
+          enum:
+            - eu
+            - us
+            - ca
+          default: eu
+  post:
+    summary: Create a Workflow Run
+    operationId: create_workflow_run
+    description: >
+      Creates and starts a Workflow Run. Returns a Workflow Run object.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/workflow_runs/workflow_run_builder.yaml
+    responses:
+      "201":
+        description: A Workflow Run object.
+        content:
+          application/json:
+            schema:
+              $ref: ../schemas/workflow_runs/workflow_run.yaml
+      default:
+        $ref: ../responses/default_error.yaml
+  get:
+    summary: List Workflow Runs
+    operationId: list_workflow_runs
+    description: >
+      Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
+    parameters:
+      - name: page
+        in: query
+        description: The number of the page to be retrieved. If not specified, defaults to 1.
+        schema:
+          type: integer
+          default: 1
+      - name: status
+        in: query
+        description: A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'.
+        schema:
+          type: string
+      - name: created_at_gt
+        in: query
+        description: A ISO-8601 date to filter results with a created date greater than (after) the one provided.
+        schema:
+          type: string
+          format: date
+      - name: created_at_lt
+        in: query
+        description: A ISO-8601 date to filter results with a created date less than (before) the one provided.
+        schema:
+          type: string
+          format: date
+      - name: sort
+        in: query
+        description: A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.
+        schema:
+          type: string
+          enum:
+            - desc
+            - asc
+          default: desc
+      - in: query
+        name: applicant_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+        description: the applicant's id.
+      - name: tags
+        in: query
+        description: A list of tags to filter the results.
+        schema:
+          type: array
+          items:
+            type: string
+    responses:
+      "200":
+        description: An array of Workflow Run objects matching the query parameters.
+        content:
+          application/json:
+            schema:
+              type: array
+              title: Workflow runs
+              items:
+                $ref: ../schemas/workflow_runs/workflow_run.yaml
+      default:
+        $ref: ../responses/default_error.yaml
+
+retrieve:
+  servers:
+    - url: https://api.{region}.onfido.com/v3.6
+      variables:
+        region:
+          enum:
+            - eu
+            - us
+            - ca
+          default: eu
+  get:
+    summary: Retrieve Workflow Run
+    operationId: find_workflow_run
+    description: >
+      A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
+    parameters:
+      - name: workflow_run_id
+        in: path
+        required: true
+        description: The unique identifier of the Workflow Run.
+        schema:
+          type: string
+          format: uuid
+    responses:
+      "200":
+        description: A Workflow Run object.
+        content:
+          application/json:
+            schema:
+              $ref: ../schemas/workflow_runs/workflow_run.yaml
+      default:
+        $ref: ../responses/default_error.yaml
+
+signed_evidence_file:
+  servers:
+    - url: https://api.{region}.onfido.com/v3.6
+      variables:
+        region:
+          enum:
+            - eu
+            - us
+            - ca
+          default: eu
+  get:
+    summary: Retrieve Workflow Run Evidence Summary File
+    operationId: download_signed_evidence_file
+    description: >
+      Retrieves the signed evidence file for the designated Workflow Run
+    parameters:
+      - name: workflow_run_id
+        in: path
+        description: Workflow Run ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      "302":
+        description: Found
+        headers:
+          Location:
+            description: Link to the signed evidence file PDF.
+            schema:
+              type: string
+              format: uri
+      "200":
+        description: The signed evidence PDF binary data.
+        content:
+          application/pdf:
+            schema:
+              type: string
+              format: binary
+      default:
+        $ref: ../responses/default_error.yaml
+
+evidence_folder:
+  servers:
+    - url: https://api.{region}.onfido.com/v3.6
+      variables:
+        region:
+          enum:
+            - eu
+            - us
+            - ca
+          default: eu
+  get:
+    summary: Retrieve Workflow Run Evidence Folder
+    operationId: download_evidence_folder
+    description: >
+      Retrieves the evidence folder for the designated Workflow Run
+    parameters:
+      - name: workflow_run_id
+        in: path
+        description: Workflow Run ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      "302":
+        description: Found
+        headers:
+          Location:
+            description: Link to the evidence folder.
+            schema:
+              type: string
+              format: uri
+      "200":
+        description: The evidence folder binary data.
+        content:
+          application/zip:
+            schema:
+              type: string
+              format: binary
+      default:
+        $ref: ../responses/default_error.yaml

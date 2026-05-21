@@ -8,7 +8,7 @@ info:
 externalDocs:
   url: https://documentation.onfido.com
 servers:
-- url: https://api.{region}.onfido.com/v3.1
+- url: "https://api.{region}.onfido.com/v3.1"
   variables:
     region:
       default: eu
@@ -24,23 +24,32 @@ paths:
       operationId: list_applicants
       parameters:
       - description: The page to return. The first page is `page=1`
+        explode: true
         in: query
         name: page
+        required: false
         schema:
           default: 1
           type: integer
+        style: form
       - description: The number of objects per page.
+        explode: true
         in: query
         name: per_page
+        required: false
         schema:
           default: 20
           type: integer
+        style: form
       - description: Whether to also include applicants scheduled for deletion.
+        explode: true
         in: query
         name: include_deleted
+        required: false
         schema:
           default: false
           type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -81,11 +90,13 @@ paths:
     delete:
       operationId: destroy_applicant
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: applicant_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
           description: No Content
@@ -99,11 +110,13 @@ paths:
     get:
       operationId: find_applicant
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: applicant_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -124,11 +137,13 @@ paths:
         - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant
       operationId: update_applicant
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: applicant_id
         required: true
         schema:
           type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -153,11 +168,13 @@ paths:
     post:
       operationId: restore_applicant
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: applicant_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
           description: No Content
@@ -174,11 +191,13 @@ paths:
         endpoint
       operationId: list_documents
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: applicant_id
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -198,33 +217,10 @@ paths:
         Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB.
       operationId: upload_document
       requestBody:
-        $ref: '#/components/requestBodies/inline_object'
         content:
           multipart/form-data:
             schema:
-              properties:
-                applicant_id:
-                  description: The ID of the applicant whose document is being uploaded.
-                  type: string
-                type:
-                  description: The type of document.
-                  type: string
-                file:
-                  description: The file to be uploaded.
-                  format: binary
-                  type: string
-                side:
-                  description: Either the `front` or `back` of the document.
-                  type: string
-                issuing_country:
-                  description: The issuing country of the document, a 3-letter ISO
-                    code.
-                  type: string
-              required:
-              - applicant_id
-              - file
-              - type
-              type: object
+              $ref: '#/components/schemas/upload_document_request'
         required: true
       responses:
         "201":
@@ -244,11 +240,13 @@ paths:
     get:
       operationId: find_document
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: document_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -268,11 +266,13 @@ paths:
     get:
       operationId: download_document
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: document_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -293,11 +293,13 @@ paths:
       operationId: list_live_photos
       parameters:
       - description: The id of the applicant the live photos belong to.
+        explode: true
         in: query
         name: applicant_id
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -317,26 +319,10 @@ paths:
         You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false.
       operationId: upload_live_photo
       requestBody:
-        $ref: '#/components/requestBodies/inline_object_1'
         content:
           multipart/form-data:
             schema:
-              properties:
-                applicant_id:
-                  type: string
-                file:
-                  description: The file to be uploaded.
-                  format: binary
-                  type: string
-                advanced_validation:
-                  default: true
-                  description: Validates that the live photo contains exactly one
-                    face.
-                  type: boolean
-              required:
-              - applicant_id
-              - file
-              type: object
+              $ref: '#/components/schemas/upload_live_photo_request'
         required: true
       responses:
         "201":
@@ -357,11 +343,13 @@ paths:
       operationId: find_live_photo
       parameters:
       - description: The live photo’s unique identifier.
+        explode: false
         in: path
         name: live_photo_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -382,11 +370,13 @@ paths:
       operationId: download_live_photo
       parameters:
       - description: The live photo’s unique identifier.
+        explode: false
         in: path
         name: live_photo_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -407,11 +397,13 @@ paths:
       operationId: list_live_videos
       parameters:
       - description: The id of the applicant the live videos belong to.
+        explode: true
         in: query
         name: applicant_id
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -431,11 +423,13 @@ paths:
       operationId: find_live_video
       parameters:
       - description: The live video’s unique identifier.
+        explode: false
         in: path
         name: live_video_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -456,11 +450,13 @@ paths:
       operationId: download_live_video
       parameters:
       - description: The live video’s unique identifier.
+        explode: false
         in: path
         name: live_video_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -482,11 +478,13 @@ paths:
       operationId: download_live_video_frame
       parameters:
       - description: The live video’s unique identifier.
+        explode: false
         in: path
         name: live_video_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -506,11 +504,13 @@ paths:
     get:
       operationId: list_checks
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: applicant_id
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -551,11 +551,13 @@ paths:
     get:
       operationId: find_check
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: check_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -574,11 +576,13 @@ paths:
     post:
       operationId: resume_check
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: check_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
           description: No Content
@@ -593,11 +597,13 @@ paths:
     get:
       operationId: download_check
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: check_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           description: The PDF binary data
@@ -612,11 +618,13 @@ paths:
     get:
       operationId: list_reports
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: check_id
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -636,11 +644,13 @@ paths:
     get:
       operationId: find_report
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: report_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -660,11 +670,13 @@ paths:
     post:
       operationId: resume_report
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: report_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
           description: No Content
@@ -679,11 +691,13 @@ paths:
     post:
       operationId: cancel_report
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: report_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
           description: No Content
@@ -737,11 +751,13 @@ paths:
     delete:
       operationId: delete_webhook
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: webhook_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "204":
           description: Webhook deleted
@@ -755,11 +771,13 @@ paths:
     get:
       operationId: find_webhook
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: webhook_id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
           content:
@@ -777,11 +795,13 @@ paths:
     put:
       operationId: edit_webhook
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: webhook_id
         required: true
         schema:
           type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -806,11 +826,13 @@ paths:
     get:
       operationId: find_addresses
       parameters:
-      - in: query
+      - explode: true
+        in: query
         name: postcode
         required: true
         schema:
           type: string
+        style: form
       responses:
         "200":
           content:
@@ -848,21 +870,428 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unexpected error
       summary: Generate a SDK token
+  /workflow_runs:
+    get:
+      description: |
+        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
+      operationId: list_workflow_runs
+      parameters:
+      - description: "The number of the page to be retrieved. If not specified, defaults\
+          \ to 1."
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+      - description: "A list of comma separated status values to filter the results.\
+          \ Possible values are 'processing', 'awaiting_input', 'approved', 'declined',\
+          \ 'review', 'abandoned' and 'error'."
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A ISO-8601 date to filter results with a created date greater
+          than (after) the one provided.
+        explode: true
+        in: query
+        name: created_at_gt
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: A ISO-8601 date to filter results with a created date less than
+          (before) the one provided.
+        explode: true
+        in: query
+        name: created_at_lt
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "A string with the value 'desc' or 'asc' that allows to sort\
+          \ the returned list by the completed datetime either descending or ascending,\
+          \ respectively. If not specified, defaults to 'desc'."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: desc
+          enum:
+          - desc
+          - asc
+          type: string
+        style: form
+      - description: the applicant's id.
+        explode: true
+        in: query
+        name: applicant_id
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: A list of tags to filter the results.
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/workflow_run'
+                title: Workflow runs
+                type: array
+          description: An array of Workflow Run objects matching the query parameters.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: List Workflow Runs
+    post:
+      description: |
+        Creates and starts a Workflow Run. Returns a Workflow Run object.
+      operationId: create_workflow_run
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflow_run_builder'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflow_run'
+          description: A Workflow Run object.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a Workflow Run
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
+  /workflow_runs/{workflow_run_id}:
+    get:
+      description: |
+        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
+      operationId: find_workflow_run
+      parameters:
+      - description: The unique identifier of the Workflow Run.
+        explode: false
+        in: path
+        name: workflow_run_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflow_run'
+          description: A Workflow Run object.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Retrieve Workflow Run
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
+  /workflow_runs/{workflow_run_id}/signed_evidence_file:
+    get:
+      description: |
+        Retrieves the signed evidence file for the designated Workflow Run
+      operationId: download_signed_evidence_file
+      parameters:
+      - description: Workflow Run ID
+        explode: false
+        in: path
+        name: workflow_run_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/pdf:
+              schema:
+                format: binary
+                type: string
+          description: The signed evidence PDF binary data.
+        "302":
+          description: Found
+          headers:
+            Location:
+              description: Link to the signed evidence file PDF.
+              explode: false
+              schema:
+                format: uri
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Retrieve Workflow Run Evidence Summary File
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
+  /workflow_runs/{workflow_run_id}/evidence_folder:
+    get:
+      description: |
+        Retrieves the evidence folder for the designated Workflow Run
+      operationId: download_evidence_folder
+      parameters:
+      - description: Workflow Run ID
+        explode: false
+        in: path
+        name: workflow_run_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/zip:
+              schema:
+                format: binary
+                type: string
+          description: The evidence folder binary data.
+        "302":
+          description: Found
+          headers:
+            Location:
+              description: Link to the evidence folder.
+              explode: false
+              schema:
+                format: uri
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Retrieve Workflow Run Evidence Folder
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
 components:
-  requestBodies:
-    inline_object_1:
+  responses:
+    default_error:
       content:
-        multipart/form-data:
+        application/json:
           schema:
-            $ref: '#/components/schemas/inline_object_1'
-      required: true
-    inline_object:
-      content:
-        multipart/form-data:
-          schema:
-            $ref: '#/components/schemas/inline_object'
-      required: true
+            $ref: '#/components/schemas/Error'
+      description: Unexpected error
   schemas:
+    address:
+      example:
+        building_name: building_name
+        country: country
+        town: town
+        flat_number: flat_number
+        street: street
+        postcode: postcode
+        state: state
+        line3: line3
+        line2: line2
+        building_number: building_number
+        line1: line1
+        sub_street: sub_street
+      properties:
+        flat_number:
+          description: The flat number of this address
+          type: string
+        building_number:
+          description: The building number of this address
+          type: string
+        building_name:
+          description: The building name of this address
+          type: string
+        street:
+          description: The street of the applicant’s address
+          type: string
+        sub_street:
+          description: The sub-street of the applicant’s address
+          type: string
+        town:
+          description: The town of the applicant’s address
+          type: string
+        postcode:
+          description: The postcode or ZIP of the applicant’s address
+          type: string
+        country:
+          description: "The 3 character ISO country code of this address. For example,\
+            \ GBR is the country code for the United Kingdom"
+          type: string
+        state:
+          description: "The address state. US states must use the USPS abbreviation\
+            \ (see also ISO 3166-2:US), for example AK, CA, or TX."
+          type: string
+        line1:
+          description: Line 1 of the applicant's address
+          type: string
+        line2:
+          description: Line 2 of the applicant's address
+          type: string
+        line3:
+          description: Line 3 of the applicant's address
+          type: string
+      type: object
+    id_number:
+      example:
+        type: type
+        state_code: state_code
+        value: value
+      properties:
+        type:
+          description: "Type of ID number. Valid values are `ssn`, `social_insurance`,\
+            \ `tax_id`, `identity_card`, `passport` and `driving_license`"
+          type: string
+        value:
+          description: Value of ID number
+          type: string
+        state_code:
+          description: Two letter code of issuing state (state-issued driving licenses
+            only)
+          type: string
+      type: object
+    applicant:
+      example:
+        address:
+          building_name: building_name
+          country: country
+          town: town
+          flat_number: flat_number
+          street: street
+          postcode: postcode
+          state: state
+          line3: line3
+          line2: line2
+          building_number: building_number
+          line1: line1
+          sub_street: sub_street
+        dob: 2000-01-23
+        sandbox: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        delete_at: 2000-01-23T04:56:07.000+00:00
+        last_name: last_name
+        id_numbers:
+        - type: type
+          state_code: state_code
+          value: value
+        - type: type
+          state_code: state_code
+          value: value
+        id: id
+        href: href
+        first_name: first_name
+        email: email
+      properties:
+        id:
+          description: The unique identifier for the applicant. Read-only.
+          readOnly: true
+          type: string
+        created_at:
+          description: The date and time when this applicant was created. Read-only.
+          format: date-time
+          readOnly: true
+          type: string
+        delete_at:
+          description: The date and time when this applicant is scheduled to be deleted.
+            Read-only.
+          format: date-time
+          readOnly: true
+          type: string
+        href:
+          description: The uri of this resource. Read-only.
+          readOnly: true
+          type: string
+        sandbox:
+          description: Read-only.
+          readOnly: true
+          type: boolean
+        first_name:
+          description: The applicant’s first name
+          type: string
+        last_name:
+          description: The applicant’s surname
+          type: string
+        email:
+          description: "The applicant’s email address. Required if doing a US check,\
+            \ or a UK check for which `applicant_provides_data` is `true`."
+          type: string
+        dob:
+          description: The applicant’s date of birth
+          format: date
+          type: string
+        address:
+          $ref: '#/components/schemas/address'
+        id_numbers:
+          items:
+            $ref: '#/components/schemas/id_number'
+          type: array
+      type: object
     applicants_list:
       example:
         applicants:
@@ -930,111 +1359,6 @@ components:
             $ref: '#/components/schemas/applicant'
           type: array
       type: object
-    applicant:
-      example:
-        address:
-          building_name: building_name
-          country: country
-          town: town
-          flat_number: flat_number
-          street: street
-          postcode: postcode
-          state: state
-          line3: line3
-          line2: line2
-          building_number: building_number
-          line1: line1
-          sub_street: sub_street
-        dob: 2000-01-23
-        sandbox: true
-        created_at: 2000-01-23T04:56:07.000+00:00
-        delete_at: 2000-01-23T04:56:07.000+00:00
-        last_name: last_name
-        id_numbers:
-        - type: type
-          state_code: state_code
-          value: value
-        - type: type
-          state_code: state_code
-          value: value
-        id: id
-        href: href
-        first_name: first_name
-        email: email
-      properties:
-        id:
-          description: The unique identifier for the applicant. Read-only.
-          readOnly: true
-          type: string
-        created_at:
-          description: The date and time when this applicant was created. Read-only.
-          format: date-time
-          readOnly: true
-          type: string
-        delete_at:
-          description: The date and time when this applicant is scheduled to be deleted.
-            Read-only.
-          format: date-time
-          readOnly: true
-          type: string
-        href:
-          description: The uri of this resource. Read-only.
-          readOnly: true
-          type: string
-        sandbox:
-          description: Read-only.
-          readOnly: true
-          type: boolean
-        first_name:
-          description: The applicant’s first name
-          type: string
-        last_name:
-          description: The applicant’s surname
-          type: string
-        email:
-          description: The applicant’s email address. Required if doing a US check,
-            or a UK check for which `applicant_provides_data` is `true`.
-          type: string
-        dob:
-          description: The applicant’s date of birth
-          format: date
-          type: string
-        address:
-          $ref: '#/components/schemas/address'
-        id_numbers:
-          items:
-            $ref: '#/components/schemas/id_number'
-          type: array
-      type: object
-    documents_list:
-      example:
-        documents:
-        - side: side
-          download_href: download_href
-          issuing_country: issuing_country
-          file_name: file_name
-          file_type: file_type
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          href: href
-          type: type
-          file_size: 0
-        - side: side
-          download_href: download_href
-          issuing_country: issuing_country
-          file_name: file_name
-          file_type: file_type
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          href: href
-          type: type
-          file_size: 0
-      properties:
-        documents:
-          items:
-            $ref: '#/components/schemas/document'
-          type: array
-      type: object
     document:
       example:
         side: side
@@ -1068,11 +1392,11 @@ components:
           description: The type of document
           type: string
         side:
-          description: The side of the document, if applicable. The possible values
-            are front and back
+          description: "The side of the document, if applicable. The possible values\
+            \ are front and back"
           type: string
         issuing_country:
-          description: The issuing country of the document, a 3-letter ISO code.
+          description: "The issuing country of the document, a 3-letter ISO code."
           type: string
         href:
           description: The uri of this resource
@@ -1081,27 +1405,33 @@ components:
           description: The uri that can be used to download the document
           type: string
       type: object
-    live_photos_list:
+    documents_list:
       example:
-        live_photos:
-        - download_href: download_href
+        documents:
+        - side: side
+          download_href: download_href
+          issuing_country: issuing_country
           file_name: file_name
           file_type: file_type
           created_at: 2000-01-23T04:56:07.000+00:00
           id: id
           href: href
+          type: type
           file_size: 0
-        - download_href: download_href
+        - side: side
+          download_href: download_href
+          issuing_country: issuing_country
           file_name: file_name
           file_type: file_type
           created_at: 2000-01-23T04:56:07.000+00:00
           id: id
           href: href
+          type: type
           file_size: 0
       properties:
-        live_photos:
+        documents:
           items:
-            $ref: '#/components/schemas/live_photo'
+            $ref: '#/components/schemas/document'
           type: array
       type: object
     live_photo:
@@ -1137,9 +1467,9 @@ components:
           description: The file type of the uploaded file.
           type: string
       type: object
-    live_videos_list:
+    live_photos_list:
       example:
-        live_videos:
+        live_photos:
         - download_href: download_href
           file_name: file_name
           file_type: file_type
@@ -1155,9 +1485,9 @@ components:
           href: href
           file_size: 0
       properties:
-        live_videos:
+        live_photos:
           items:
-            $ref: '#/components/schemas/live_video'
+            $ref: '#/components/schemas/live_photo'
           type: array
       type: object
     live_video:
@@ -1191,6 +1521,171 @@ components:
           type: integer
         file_type:
           description: The file type of the uploaded file.
+          type: string
+      type: object
+    live_videos_list:
+      example:
+        live_videos:
+        - download_href: download_href
+          file_name: file_name
+          file_type: file_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          href: href
+          file_size: 0
+        - download_href: download_href
+          file_name: file_name
+          file_type: file_type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          href: href
+          file_size: 0
+      properties:
+        live_videos:
+          items:
+            $ref: '#/components/schemas/live_video'
+          type: array
+      type: object
+    check:
+      example:
+        document_ids:
+        - document_ids
+        - document_ids
+        suppress_form_emails: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        report_names:
+        - report_names
+        - report_names
+        sub_result: sub_result
+        results_uri: results_uri
+        report_ids:
+        - report_ids
+        - report_ids
+        privacy_notices_read_consent_given: true
+        tags:
+        - tags
+        - tags
+        result: result
+        form_uri: form_uri
+        webhook_ids:
+        - webhook_ids
+        - webhook_ids
+        applicant_id: applicant_id
+        download_uri: download_uri
+        asynchronous: true
+        id: id
+        href: href
+        redirect_uri: redirect_uri
+        consider:
+        - consider
+        - consider
+        status: status
+        applicant_provides_data: true
+      properties:
+        id:
+          description: The unique identifier for the check. Read-only.
+          readOnly: true
+          type: string
+        created_at:
+          description: The date and time when this check was created. Read-only.
+          format: date-time
+          readOnly: true
+          type: string
+        href:
+          description: The uri of this resource. Read-only.
+          readOnly: true
+          type: string
+        status:
+          description: The current state of the check in the checking process. Read-only.
+          readOnly: true
+          type: string
+        result:
+          description: "The overall result of the check, based on the results of the\
+            \ constituent reports. Read-only."
+          readOnly: true
+          type: string
+        download_uri:
+          description: A link to a PDF output of the check results. Append `.pdf`
+            to get the pdf file. Read-only.
+          readOnly: true
+          type: string
+        form_uri:
+          description: "A link to the applicant form, if `applicant_provides_data`\
+            \ is `true`. Read-only."
+          readOnly: true
+          type: string
+        redirect_uri:
+          description: "For checks where `applicant_provides_data` is `true`, redirect\
+            \ to this URI when the applicant has submitted their data. Read-only."
+          readOnly: true
+          type: string
+        results_uri:
+          description: A link to the corresponding results page on the Onfido dashboard.
+          readOnly: true
+          type: string
+        report_names:
+          description: An array of report names (strings).
+          items:
+            type: string
+          type: array
+          writeOnly: true
+        applicant_id:
+          description: The ID of the applicant to do the check on.
+          type: string
+        privacy_notices_read_consent_given:
+          description: "Indicates whether the privacy notices and terms of service\
+            \ have been read and, where specific laws require, that consent has been\
+            \ given for Onfido."
+          type: boolean
+        tags:
+          description: Array of tags being assigned to this check.
+          items:
+            type: string
+          type: array
+        applicant_provides_data:
+          description: |
+            Send an applicant form to applicant to complete to proceed with check. Defaults to false.
+          type: boolean
+        suppress_form_emails:
+          description: |
+            For checks where `applicant_provides_data` is `true`, applicant form will not be automatically sent if `suppress_form_emails` is set to `true`. You can manually send the form at any time after the check has been created, using the link found in the form_uri attribute of the check object. Write-only. Defaults to false.
+          type: boolean
+          writeOnly: true
+        asynchronous:
+          description: |
+            Defaults to `true`. Write-only. If set to `false`, you will only receive a response when all reports in your check have completed.
+          type: boolean
+          writeOnly: true
+        webhook_ids:
+          description: "Optional. An array of strings describing which webhooks to\
+            \ trigger for this check. By default, all webhooks registered in the account\
+            \ will be triggered and this value will be null in the responses."
+          items:
+            type: string
+          type: array
+        report_ids:
+          description: An array of report ids.
+          items:
+            type: string
+          type: array
+        document_ids:
+          description: "Optional. An array of document ids, for use with Document\
+            \ reports only. If omitted, the Document report will use the most recently\
+            \ uploaded document by default."
+          items:
+            type: string
+          type: array
+          writeOnly: true
+        consider:
+          description: Returns a pre-determined consider sub-result in sandbox for
+            the specific reports in the consider array.
+          items:
+            type: string
+          type: array
+          writeOnly: true
+        sub_result:
+          description: Triggers a pre-determined sub-result response for sandbox Document
+            reports.
           type: string
       type: object
     checks_list:
@@ -1268,186 +1763,15 @@ components:
             $ref: '#/components/schemas/check'
           type: array
       type: object
-    check:
+    report_document:
       example:
-        document_ids:
-        - document_ids
-        - document_ids
-        suppress_form_emails: true
-        created_at: 2000-01-23T04:56:07.000+00:00
-        report_names:
-        - report_names
-        - report_names
-        sub_result: sub_result
-        results_uri: results_uri
-        report_ids:
-        - report_ids
-        - report_ids
-        privacy_notices_read_consent_given: true
-        tags:
-        - tags
-        - tags
-        result: result
-        form_uri: form_uri
-        webhook_ids:
-        - webhook_ids
-        - webhook_ids
-        applicant_id: applicant_id
-        download_uri: download_uri
-        asynchronous: true
         id: id
-        href: href
-        redirect_uri: redirect_uri
-        consider:
-        - consider
-        - consider
-        status: status
-        applicant_provides_data: true
       properties:
         id:
-          description: The unique identifier for the check. Read-only.
-          readOnly: true
+          description: ID of uploaded document to use.
           type: string
-        created_at:
-          description: The date and time when this check was created. Read-only.
-          format: date-time
-          readOnly: true
-          type: string
-        href:
-          description: The uri of this resource. Read-only.
-          readOnly: true
-          type: string
-        status:
-          description: The current state of the check in the checking process. Read-only.
-          readOnly: true
-          type: string
-        result:
-          description: The overall result of the check, based on the results of the
-            constituent reports. Read-only.
-          readOnly: true
-          type: string
-        download_uri:
-          description: A link to a PDF output of the check results. Append `.pdf`
-            to get the pdf file. Read-only.
-          readOnly: true
-          type: string
-        form_uri:
-          description: A link to the applicant form, if `applicant_provides_data`
-            is `true`. Read-only.
-          readOnly: true
-          type: string
-        redirect_uri:
-          description: For checks where `applicant_provides_data` is `true`, redirect
-            to this URI when the applicant has submitted their data. Read-only.
-          readOnly: true
-          type: string
-        results_uri:
-          description: A link to the corresponding results page on the Onfido dashboard.
-          readOnly: true
-          type: string
-        report_names:
-          description: An array of report names (strings).
-          items:
-            type: string
-          type: array
-          writeOnly: true
-        applicant_id:
-          description: The ID of the applicant to do the check on.
-          type: string
-        privacy_notices_read_consent_given:
-          description: Indicates whether the privacy notices and terms of service
-            have been read and, where specific laws require, that consent has been
-            given for Onfido.
-          type: boolean
-        tags:
-          description: Array of tags being assigned to this check.
-          items:
-            type: string
-          type: array
-        applicant_provides_data:
-          description: |
-            Send an applicant form to applicant to complete to proceed with check. Defaults to false.
-          type: boolean
-        suppress_form_emails:
-          description: |
-            For checks where `applicant_provides_data` is `true`, applicant form will not be automatically sent if `suppress_form_emails` is set to `true`. You can manually send the form at any time after the check has been created, using the link found in the form_uri attribute of the check object. Write-only. Defaults to false.
-          type: boolean
-          writeOnly: true
-        asynchronous:
-          description: |
-            Defaults to `true`. Write-only. If set to `false`, you will only receive a response when all reports in your check have completed.
-          type: boolean
-          writeOnly: true
-        webhook_ids:
-          description: Optional. An array of strings describing which webhooks to
-            trigger for this check. By default, all webhooks registered in the account
-            will be triggered and this value will be null in the responses.
-          items:
-            type: string
-          type: array
-        report_ids:
-          description: An array of report ids.
-          items:
-            type: string
-          type: array
-        document_ids:
-          description: Optional. An array of document ids, for use with Document reports
-            only. If omitted, the Document report will use the most recently uploaded
-            document by default.
-          items:
-            type: string
-          type: array
-          writeOnly: true
-        consider:
-          description: Returns a pre-determined consider sub-result in sandbox for
-            the specific reports in the consider array.
-          items:
-            type: string
-          type: array
-          writeOnly: true
-        sub_result:
-          description: Triggers a pre-determined sub-result response for sandbox Document
-            reports.
-          type: string
-      type: object
-    reports_list:
-      example:
-        reports:
-        - result: result
-          documents:
-          - id: id
-          - id: id
-          breakdown:
-            key: '{}'
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          sub_result: sub_result
-          check_id: check_id
-          id: id
-          href: href
-          properties:
-            key: '{}'
-          status: status
-        - result: result
-          documents:
-          - id: id
-          - id: id
-          breakdown:
-            key: '{}'
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          sub_result: sub_result
-          check_id: check_id
-          id: id
-          href: href
-          properties:
-            key: '{}'
-          status: status
-      properties:
-        reports:
-          items:
-            $ref: '#/components/schemas/report'
-          type: array
+      required:
+      - id
       type: object
     report:
       example:
@@ -1456,7 +1780,7 @@ components:
         - id: id
         - id: id
         breakdown:
-          key: '{}'
+          key: ""
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
         sub_result: sub_result
@@ -1464,7 +1788,7 @@ components:
         id: id
         href: href
         properties:
-          key: '{}'
+          key: ""
         status: status
       properties:
         id:
@@ -1490,8 +1814,8 @@ components:
           readOnly: true
           type: string
         sub_result:
-          description: The sub_result of the report. It gives a more detailed result
-            for document reports only, and will be null otherwise. Read-only.
+          description: "The sub_result of the report. It gives a more detailed result\
+            \ for document reports only, and will be null otherwise. Read-only."
           readOnly: true
           type: string
         breakdown:
@@ -1502,7 +1826,7 @@ components:
           type: object
         properties:
           additionalProperties: true
-          description: The properties associated with the report, if any. Read-only.
+          description: "The properties associated with the report, if any. Read-only."
           readOnly: true
           type: object
         check_id:
@@ -1513,43 +1837,51 @@ components:
           description: The name of the report type.
           type: string
         documents:
-          description: Array of objects with document ids that were used in the Onfido
-            engine. [ONLY USED IN A DOCUMENT CHECK]
+          description: "Array of objects with document ids that were used in the Onfido\
+            \ engine. [ONLY USED IN A DOCUMENT CHECK]"
           items:
             $ref: '#/components/schemas/report_document'
           type: array
       required:
       - name
       type: object
-    webhooks_list:
+    reports_list:
       example:
-        webhooks:
-        - environments:
-          - environments
-          - environments
+        reports:
+        - result: result
+          documents:
+          - id: id
+          - id: id
+          breakdown:
+            key: ""
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          sub_result: sub_result
+          check_id: check_id
           id: id
           href: href
-          url: url
-          enabled: true
-          events:
-          - events
-          - events
-          token: token
-        - environments:
-          - environments
-          - environments
+          properties:
+            key: ""
+          status: status
+        - result: result
+          documents:
+          - id: id
+          - id: id
+          breakdown:
+            key: ""
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          sub_result: sub_result
+          check_id: check_id
           id: id
           href: href
-          url: url
-          enabled: true
-          events:
-          - events
-          - events
-          token: token
+          properties:
+            key: ""
+          status: status
       properties:
-        webhooks:
+        reports:
           items:
-            $ref: '#/components/schemas/webhook'
+            $ref: '#/components/schemas/report'
           type: array
       type: object
     webhook:
@@ -1598,6 +1930,37 @@ components:
           type: array
       required:
       - url
+      type: object
+    webhooks_list:
+      example:
+        webhooks:
+        - environments:
+          - environments
+          - environments
+          id: id
+          href: href
+          url: url
+          enabled: true
+          events:
+          - events
+          - events
+          token: token
+        - environments:
+          - environments
+          - environments
+          id: id
+          href: href
+          url: url
+          enabled: true
+          events:
+          - events
+          - events
+          token: token
+      properties:
+        webhooks:
+          items:
+            $ref: '#/components/schemas/webhook'
+          type: array
       type: object
     addresses_list:
       example:
@@ -1662,88 +2025,150 @@ components:
           readOnly: true
           type: string
       type: object
-    address:
-      example:
-        building_name: building_name
-        country: country
-        town: town
-        flat_number: flat_number
-        street: street
-        postcode: postcode
-        state: state
-        line3: line3
-        line2: line2
-        building_number: building_number
-        line1: line1
-        sub_street: sub_street
+    workflow_run_link:
       properties:
-        flat_number:
-          description: The flat number of this address
+        url:
+          description: Link to access the Workflow Run without the need to integrate
+            with Onfido's SDKs.
           type: string
-        building_number:
-          description: The building number of this address
+        completed_redirect_url:
+          description: "When the interactive section of the Workflow Run has completed\
+            \ successfully, the user will be redirected to this URL instead of seeing\
+            \ the default Onfido 'thank you' page."
+          nullable: true
           type: string
-        building_name:
-          description: The building name of this address
+        expired_redirect_url:
+          description: "When the link has expired, the user will be immediately redirected\
+            \ to this URL instead of seeing the default Onfido error message."
+          nullable: true
           type: string
-        street:
-          description: The street of the applicant’s address
+        expires_at:
+          description: Date and time when the link will expire.
+          format: date-time
+          nullable: true
           type: string
-        sub_street:
-          description: The sub-street of the applicant’s address
+        language:
+          description: The code for the language when the workflow run is acessed
+            using the link.
+          enum:
+          - en_US
+          - de_DE
+          - es_ES
+          - fr_FR
+          - it_IT
+          - pt_PT
+          - nl_NL
+          nullable: true
           type: string
-        town:
-          description: The town of the applicant’s address
+    workflow_run_shared:
+      properties:
+        applicant_id:
+          description: The unique identifier for the Applicant.
+          format: uuid
           type: string
-        postcode:
-          description: The postcode or ZIP of the applicant’s address
+        workflow_id:
+          description: The unique identifier for the Workflow.
+          format: uuid
           type: string
-        country:
-          description: The 3 character ISO country code of this address. For example,
-            GBR is the country code for the United Kingdom
+        tags:
+          description: Tags or labels assigned to the workflow run.
+          items:
+            maxLength: 128
+            minLength: 1
+            type: string
+          maxItems: 30
+          nullable: true
+          type: array
+        customer_user_id:
+          description: Customer-provided user identifier.
+          maxLength: 256
           type: string
-        state:
-          description: The address state. US states must use the USPS abbreviation
-            (see also ISO 3166-2:US), for example AK, CA, or TX.
+        link:
+          $ref: '#/components/schemas/workflow_run_shared_link'
+        created_at:
+          description: The date and time when the Workflow Run was created.
+          format: date-time
           type: string
-        line1:
-          description: Line 1 of the applicant's address
+        updated_at:
+          description: The date and time when the Workflow Run was last updated.
+          format: date-time
           type: string
-        line2:
-          description: Line 2 of the applicant's address
-          type: string
-        line3:
-          description: Line 3 of the applicant's address
-          type: string
+      required:
+      - applicant_id
+      - workflow_id
       type: object
-    id_number:
-      example:
-        type: type
-        state_code: state_code
-        value: value
+    workflow_run_status:
+      enum:
+      - processing
+      - awaiting_input
+      - awaiting_client_input
+      - approved
+      - declined
+      - review
+      - abandoned
+      - error
+      type: string
+    workflow_run_error:
       properties:
         type:
-          description: Type of ID number. Valid values are `ssn`, `social_insurance`,
-            `tax_id`, `identity_card`, `passport` and `driving_license`
+          description: The type of error.
           type: string
-        value:
-          description: Value of ID number
-          type: string
-        state_code:
-          description: Two letter code of issuing state (state-issued driving licenses
-            only)
+        message:
+          description: A textual description of the error.
           type: string
       type: object
-    report_document:
-      example:
-        id: id
+    workflow_run_response:
       properties:
         id:
-          description: ID of uploaded document to use.
+          description: The unique identifier for the Workflow Run.
+          format: uuid
+          type: string
+        workflow_version_id:
+          description: The identifier for the Workflow version.
+          type: integer
+        dashboard_url:
+          description: The URL for viewing the Workflow Run results on your Onfido
+            Dashboard.
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/workflow_run_status'
+          description: The status of the Workflow Run.
+        output:
+          description: Output object contains all of the properties configured on
+            the Workflow version.
+          type: object
+        reasons:
+          description: The reasons the Workflow Run outcome was reached. Configurable
+            when creating the Workflow version.
+          items:
+            type: string
+          type: array
+        error:
+          $ref: '#/components/schemas/workflow_run_response_error'
+        sdk_token:
+          description: Client token to use when loading this workflow run in the Onfido
+            SDK.
+          nullable: true
           type: string
       required:
       - id
       type: object
+    workflow_run:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_shared'
+      - $ref: '#/components/schemas/workflow_run_response'
+    workflow_run_request:
+      properties:
+        custom_data:
+          additionalProperties: true
+          description: Object with Custom Input Data to be used in the Workflow Run.
+          type: object
+      type: object
+    workflow_run_builder:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_shared'
+      - $ref: '#/components/schemas/workflow_run_request'
     ErrorProperties:
       properties:
         type:
@@ -1761,7 +2186,7 @@ components:
           $ref: '#/components/schemas/ErrorProperties'
       title: Error
       type: object
-    inline_object:
+    upload_document_request:
       properties:
         applicant_id:
           description: The ID of the applicant whose document is being uploaded.
@@ -1777,14 +2202,14 @@ components:
           description: Either the `front` or `back` of the document.
           type: string
         issuing_country:
-          description: The issuing country of the document, a 3-letter ISO code.
+          description: "The issuing country of the document, a 3-letter ISO code."
           type: string
       required:
       - applicant_id
       - file
       - type
       type: object
-    inline_object_1:
+    upload_live_photo_request:
       properties:
         applicant_id:
           type: string
@@ -1799,6 +2224,16 @@ components:
       required:
       - applicant_id
       - file
+      type: object
+    workflow_run_shared_link:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_link'
+      description: Object for the configuration of the Workflow Run link.
+      type: object
+    workflow_run_response_error:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_error'
+      description: Error object. Only set when the Workflow Run status is 'error'.
       type: object
   securitySchemes:
     Token:
