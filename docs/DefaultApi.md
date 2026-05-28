@@ -304,6 +304,7 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+
 ## CreateWorkflowRun
 
 > WorkflowRun CreateWorkflowRun(ctx).WorkflowRunBuilder(workflowRunBuilder).Execute()
@@ -368,7 +369,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteWebhook
 
@@ -636,6 +636,7 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+
 ## DownloadEvidenceFolder
 
 > *os.File DownloadEvidenceFolder(ctx, workflowRunId).Execute()
@@ -704,7 +705,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DownloadLivePhoto
 
@@ -916,6 +916,7 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+
 ## DownloadSignedEvidenceFile
 
 > *os.File DownloadSignedEvidenceFile(ctx, workflowRunId).Execute()
@@ -984,7 +985,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## EditWebhook
 
@@ -1596,6 +1596,7 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+
 ## FindWorkflowRun
 
 > WorkflowRun FindWorkflowRun(ctx, workflowRunId).Execute()
@@ -1664,7 +1665,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GenerateSdkToken
 
@@ -2179,6 +2179,7 @@ Other parameters are passed through a pointer to a apiListWebhooksRequest struct
 [[Back to README]](../README.md)
 
 
+
 ## ListWorkflowRuns
 
 > []WorkflowRun ListWorkflowRuns(ctx).Page(page).Status(status).CreatedAtGt(createdAtGt).CreatedAtLt(createdAtLt).Sort(sort).ApplicantId(applicantId).Tags(tags).Execute()
@@ -2256,7 +2257,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## RestoreApplicant
 
@@ -2530,7 +2530,7 @@ Name | Type | Description  | Notes
 
 ## UploadDocument
 
-> Document UploadDocument(ctx).InlineObject(inlineObject).Execute()
+> Document UploadDocument(ctx).ApplicantId(applicantId).Type_(type_).File(file).Side(side).IssuingCountry(issuingCountry).Execute()
 
 Upload a document
 
@@ -2549,11 +2549,15 @@ import (
 )
 
 func main() {
-    inlineObject := TODO // InlineObject | 
+    applicantId := "applicantId_example" // string | The ID of the applicant whose document is being uploaded.
+    type_ := "type__example" // string | The type of document.
+    file := os.NewFile(1234, "some_file") // *os.File | The file to be uploaded.
+    side := "side_example" // string | Either the `front` or `back` of the document. (optional)
+    issuingCountry := "issuingCountry_example" // string | The issuing country of the document, a 3-letter ISO code. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.UploadDocument(context.Background()).InlineObject(inlineObject).Execute()
+    resp, r, err := api_client.DefaultApi.UploadDocument(context.Background()).ApplicantId(applicantId).Type_(type_).File(file).Side(side).IssuingCountry(issuingCountry).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UploadDocument``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2574,7 +2578,11 @@ Other parameters are passed through a pointer to a apiUploadDocumentRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineObject** | [**InlineObject**](InlineObject.md) |  | 
+ **applicantId** | **string** | The ID of the applicant whose document is being uploaded. | 
+ **type_** | **string** | The type of document. | 
+ **file** | ***os.File** | The file to be uploaded. | 
+ **side** | **string** | Either the &#x60;front&#x60; or &#x60;back&#x60; of the document. | 
+ **issuingCountry** | **string** | The issuing country of the document, a 3-letter ISO code. | 
 
 ### Return type
 
@@ -2596,7 +2604,7 @@ Name | Type | Description  | Notes
 
 ## UploadLivePhoto
 
-> LivePhoto UploadLivePhoto(ctx).InlineObject1(inlineObject1).Execute()
+> LivePhoto UploadLivePhoto(ctx).ApplicantId(applicantId).File(file).AdvancedValidation(advancedValidation).Execute()
 
 Upload live photo
 
@@ -2615,11 +2623,13 @@ import (
 )
 
 func main() {
-    inlineObject1 := TODO // InlineObject1 | 
+    applicantId := "applicantId_example" // string | 
+    file := os.NewFile(1234, "some_file") // *os.File | The file to be uploaded.
+    advancedValidation := true // bool | Validates that the live photo contains exactly one face. (optional) (default to true)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.UploadLivePhoto(context.Background()).InlineObject1(inlineObject1).Execute()
+    resp, r, err := api_client.DefaultApi.UploadLivePhoto(context.Background()).ApplicantId(applicantId).File(file).AdvancedValidation(advancedValidation).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UploadLivePhoto``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2640,7 +2650,9 @@ Other parameters are passed through a pointer to a apiUploadLivePhotoRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineObject1** | [**InlineObject1**](InlineObject1.md) |  | 
+ **applicantId** | **string** |  | 
+ **file** | ***os.File** | The file to be uploaded. | 
+ **advancedValidation** | **bool** | Validates that the live photo contains exactly one face. | [default to true]
 
 ### Return type
 
