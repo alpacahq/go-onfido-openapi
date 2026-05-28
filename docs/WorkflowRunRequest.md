@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CustomData** | Pointer to **map[string]interface{}** | Object with Custom Input Data to be used in the Workflow Run. | [optional] 
+**CustomData** | Pointer to **map[string]map[string]interface{}** | Object with Custom Input Data to be used in the Workflow Run. | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCustomData
 
-`func (o *WorkflowRunRequest) GetCustomData() map[string]interface{}`
+`func (o *WorkflowRunRequest) GetCustomData() map[string]map[string]interface{}`
 
 GetCustomData returns the CustomData field if non-nil, zero value otherwise.
 
 ### GetCustomDataOk
 
-`func (o *WorkflowRunRequest) GetCustomDataOk() (*map[string]interface{}, bool)`
+`func (o *WorkflowRunRequest) GetCustomDataOk() (*map[string]map[string]interface{}, bool)`
 
 GetCustomDataOk returns a tuple with the CustomData field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomData
 
-`func (o *WorkflowRunRequest) SetCustomData(v map[string]interface{})`
+`func (o *WorkflowRunRequest) SetCustomData(v map[string]map[string]interface{})`
 
 SetCustomData sets CustomData field to given value.
 

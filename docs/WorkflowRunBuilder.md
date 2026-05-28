@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Link** | Pointer to [**WorkflowRunSharedLink**](WorkflowRunSharedLink.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** | The date and time when the Workflow Run was created. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | The date and time when the Workflow Run was last updated. | [optional] 
-**CustomData** | Pointer to **map[string]interface{}** | Object with Custom Input Data to be used in the Workflow Run. | [optional] 
+**CustomData** | Pointer to **map[string]map[string]interface{}** | Object with Custom Input Data to be used in the Workflow Run. | [optional] 
 
 ## Methods
 
@@ -209,20 +209,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetCustomData
 
-`func (o *WorkflowRunBuilder) GetCustomData() map[string]interface{}`
+`func (o *WorkflowRunBuilder) GetCustomData() map[string]map[string]interface{}`
 
 GetCustomData returns the CustomData field if non-nil, zero value otherwise.
 
 ### GetCustomDataOk
 
-`func (o *WorkflowRunBuilder) GetCustomDataOk() (*map[string]interface{}, bool)`
+`func (o *WorkflowRunBuilder) GetCustomDataOk() (*map[string]map[string]interface{}, bool)`
 
 GetCustomDataOk returns a tuple with the CustomData field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCustomData
 
-`func (o *WorkflowRunBuilder) SetCustomData(v map[string]interface{})`
+`func (o *WorkflowRunBuilder) SetCustomData(v map[string]map[string]interface{})`
 
 SetCustomData sets CustomData field to given value.
 

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The unique identifier for the Workflow Run. | 
 **WorkflowVersionId** | Pointer to **int32** | The identifier for the Workflow version. | [optional] 
 **DashboardUrl** | Pointer to **string** | The URL for viewing the Workflow Run results on your Onfido Dashboard. | [optional] 
-**Status** | Pointer to [**WorkflowRunStatus**](WorkflowRunStatus.md) |  | [optional] 
+**Status** | Pointer to [**WorkflowRunStatus**](workflow_run_status.md) | The status of the Workflow Run. | [optional] 
 **Output** | Pointer to **map[string]interface{}** | Output object contains all of the properties configured on the Workflow version. | [optional] 
 **Reasons** | Pointer to **[]string** | The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow version. | [optional] 
 **Error** | Pointer to [**WorkflowRunResponseError**](WorkflowRunResponseError.md) |  | [optional] 

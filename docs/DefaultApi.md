@@ -61,15 +61,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     reportId := "reportId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.CancelReport(context.Background(), reportId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CancelReport(context.Background(), reportId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CancelReport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,15 +127,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicant := *openapiclient.NewApplicant() // Applicant | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.CreateApplicant(context.Background()).Applicant(applicant).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CreateApplicant(context.Background()).Applicant(applicant).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateApplicant``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -191,15 +191,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     check := *openapiclient.NewCheck() // Check | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.CreateCheck(context.Background()).Check(check).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CreateCheck(context.Background()).Check(check).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateCheck``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -255,15 +255,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     webhook := *openapiclient.NewWebhook("Url_example") // Webhook | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.CreateWebhook(context.Background()).Webhook(webhook).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CreateWebhook(context.Background()).Webhook(webhook).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -321,15 +321,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     workflowRunBuilder := *openapiclient.NewWorkflowRunBuilder("ApplicantId_example", "WorkflowId_example") // WorkflowRunBuilder | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.CreateWorkflowRun(context.Background()).WorkflowRunBuilder(workflowRunBuilder).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CreateWorkflowRun(context.Background()).WorkflowRunBuilder(workflowRunBuilder).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateWorkflowRun``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -385,15 +385,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     webhookId := "webhookId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.DeleteWebhook(context.Background(), webhookId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DeleteWebhook(context.Background(), webhookId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -451,15 +451,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicantId := "applicantId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.DestroyApplicant(context.Background(), applicantId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DestroyApplicant(context.Background(), applicantId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DestroyApplicant``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -517,15 +517,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     checkId := "checkId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.DownloadCheck(context.Background(), checkId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadCheck(context.Background(), checkId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadCheck``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -583,15 +583,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     documentId := "documentId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DownloadDocument(context.Background(), documentId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadDocument(context.Background(), documentId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadDocument``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -653,15 +653,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
-    workflowRunId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Workflow Run ID
+    workflowRunId := TODO // string | Workflow Run ID
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DownloadEvidenceFolder(context.Background(), workflowRunId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadEvidenceFolder(context.Background(), workflowRunId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadEvidenceFolder``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -677,7 +677,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workflowRunId** | **string** | Workflow Run ID | 
+**workflowRunId** | [**string**](.md) | Workflow Run ID | 
 
 ### Other Parameters
 
@@ -723,15 +723,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     livePhotoId := "livePhotoId_example" // string | The live photo’s unique identifier.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DownloadLivePhoto(context.Background(), livePhotoId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadLivePhoto(context.Background(), livePhotoId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadLivePhoto``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -793,15 +793,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     liveVideoId := "liveVideoId_example" // string | The live video’s unique identifier.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DownloadLiveVideo(context.Background(), liveVideoId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadLiveVideo(context.Background(), liveVideoId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadLiveVideo``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -863,15 +863,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     liveVideoId := "liveVideoId_example" // string | The live video’s unique identifier.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DownloadLiveVideoFrame(context.Background(), liveVideoId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadLiveVideoFrame(context.Background(), liveVideoId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadLiveVideoFrame``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -933,15 +933,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
-    workflowRunId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Workflow Run ID
+    workflowRunId := TODO // string | Workflow Run ID
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.DownloadSignedEvidenceFile(context.Background(), workflowRunId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadSignedEvidenceFile(context.Background(), workflowRunId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadSignedEvidenceFile``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -957,7 +957,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workflowRunId** | **string** | Workflow Run ID | 
+**workflowRunId** | [**string**](.md) | Workflow Run ID | 
 
 ### Other Parameters
 
@@ -1001,7 +1001,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -1009,8 +1009,8 @@ func main() {
     webhook := *openapiclient.NewWebhook("Url_example") // Webhook | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.EditWebhook(context.Background(), webhookId).Webhook(webhook).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.EditWebhook(context.Background(), webhookId).Webhook(webhook).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.EditWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1071,15 +1071,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     postcode := "postcode_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindAddresses(context.Background()).Postcode(postcode).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindAddresses(context.Background()).Postcode(postcode).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindAddresses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1135,15 +1135,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicantId := "applicantId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindApplicant(context.Background(), applicantId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindApplicant(context.Background(), applicantId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindApplicant``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1203,15 +1203,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     checkId := "checkId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindCheck(context.Background(), checkId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindCheck(context.Background(), checkId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindCheck``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1271,15 +1271,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     documentId := "documentId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindDocument(context.Background(), documentId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindDocument(context.Background(), documentId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindDocument``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1339,15 +1339,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     livePhotoId := "livePhotoId_example" // string | The live photo’s unique identifier.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindLivePhoto(context.Background(), livePhotoId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindLivePhoto(context.Background(), livePhotoId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindLivePhoto``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1407,15 +1407,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     liveVideoId := "liveVideoId_example" // string | The live video’s unique identifier.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindLiveVideo(context.Background(), liveVideoId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindLiveVideo(context.Background(), liveVideoId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindLiveVideo``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1475,15 +1475,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     reportId := "reportId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindReport(context.Background(), reportId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindReport(context.Background(), reportId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindReport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1543,15 +1543,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     webhookId := "webhookId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindWebhook(context.Background(), webhookId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindWebhook(context.Background(), webhookId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1613,15 +1613,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
-    workflowRunId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The unique identifier of the Workflow Run.
+    workflowRunId := TODO // string | The unique identifier of the Workflow Run.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.FindWorkflowRun(context.Background(), workflowRunId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindWorkflowRun(context.Background(), workflowRunId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindWorkflowRun``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1637,7 +1637,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workflowRunId** | **string** | The unique identifier of the Workflow Run. | 
+**workflowRunId** | [**string**](.md) | The unique identifier of the Workflow Run. | 
 
 ### Other Parameters
 
@@ -1681,15 +1681,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     sdkToken := *openapiclient.NewSdkToken() // SdkToken | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.GenerateSdkToken(context.Background()).SdkToken(sdkToken).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.GenerateSdkToken(context.Background()).SdkToken(sdkToken).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GenerateSdkToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1745,7 +1745,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -1754,8 +1754,8 @@ func main() {
     includeDeleted := true // bool | Whether to also include applicants scheduled for deletion. (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListApplicants(context.Background()).Page(page).PerPage(perPage).IncludeDeleted(includeDeleted).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListApplicants(context.Background()).Page(page).PerPage(perPage).IncludeDeleted(includeDeleted).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListApplicants``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1813,15 +1813,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicantId := "applicantId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListChecks(context.Background()).ApplicantId(applicantId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListChecks(context.Background()).ApplicantId(applicantId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListChecks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1879,15 +1879,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicantId := "applicantId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListDocuments(context.Background()).ApplicantId(applicantId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListDocuments(context.Background()).ApplicantId(applicantId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListDocuments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1943,15 +1943,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicantId := "applicantId_example" // string | The id of the applicant the live photos belong to.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListLivePhotos(context.Background()).ApplicantId(applicantId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListLivePhotos(context.Background()).ApplicantId(applicantId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListLivePhotos``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2007,15 +2007,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicantId := "applicantId_example" // string | The id of the applicant the live videos belong to.
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListLiveVideos(context.Background()).ApplicantId(applicantId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListLiveVideos(context.Background()).ApplicantId(applicantId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListLiveVideos``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2071,15 +2071,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     checkId := "checkId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListReports(context.Background()).CheckId(checkId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListReports(context.Background()).CheckId(checkId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListReports``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2135,14 +2135,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListWebhooks(context.Background()).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListWebhooks(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListWebhooks``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2197,7 +2197,7 @@ import (
     "fmt"
     "os"
     "time"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -2206,12 +2206,12 @@ func main() {
     createdAtGt := time.Now() // string | A ISO-8601 date to filter results with a created date greater than (after) the one provided. (optional)
     createdAtLt := time.Now() // string | A ISO-8601 date to filter results with a created date less than (before) the one provided. (optional)
     sort := "sort_example" // string | A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'. (optional) (default to "desc")
-    applicantId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | the applicant's id. (optional)
+    applicantId := TODO // string | the applicant's id. (optional)
     tags := []string{"Inner_example"} // []string | A list of tags to filter the results. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ListWorkflowRuns(context.Background()).Page(page).Status(status).CreatedAtGt(createdAtGt).CreatedAtLt(createdAtLt).Sort(sort).ApplicantId(applicantId).Tags(tags).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListWorkflowRuns(context.Background()).Page(page).Status(status).CreatedAtGt(createdAtGt).CreatedAtLt(createdAtLt).Sort(sort).ApplicantId(applicantId).Tags(tags).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListWorkflowRuns``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2237,7 +2237,7 @@ Name | Type | Description  | Notes
  **createdAtGt** | **string** | A ISO-8601 date to filter results with a created date greater than (after) the one provided. | 
  **createdAtLt** | **string** | A ISO-8601 date to filter results with a created date less than (before) the one provided. | 
  **sort** | **string** | A string with the value &#39;desc&#39; or &#39;asc&#39; that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to &#39;desc&#39;. | [default to &quot;desc&quot;]
- **applicantId** | **string** | the applicant&#39;s id. | 
+ **applicantId** | [**string**](string.md) | the applicant&#39;s id. | 
  **tags** | **[]string** | A list of tags to filter the results. | 
 
 ### Return type
@@ -2273,15 +2273,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     applicantId := "applicantId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.RestoreApplicant(context.Background(), applicantId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.RestoreApplicant(context.Background(), applicantId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.RestoreApplicant``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2339,15 +2339,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     checkId := "checkId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.ResumeCheck(context.Background(), checkId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ResumeCheck(context.Background(), checkId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ResumeCheck``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2405,15 +2405,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
     reportId := "reportId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DefaultApi.ResumeReport(context.Background(), reportId).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ResumeReport(context.Background(), reportId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ResumeReport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2473,7 +2473,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -2481,8 +2481,8 @@ func main() {
     applicant := *openapiclient.NewApplicant() // Applicant | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.UpdateApplicant(context.Background(), applicantId).Applicant(applicant).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.UpdateApplicant(context.Background(), applicantId).Applicant(applicant).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdateApplicant``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2530,7 +2530,7 @@ Name | Type | Description  | Notes
 
 ## UploadDocument
 
-> Document UploadDocument(ctx).ApplicantId(applicantId).Type_(type_).File(file).Side(side).IssuingCountry(issuingCountry).Execute()
+> Document UploadDocument(ctx).InlineObject(inlineObject).Execute()
 
 Upload a document
 
@@ -2545,19 +2545,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
-    applicantId := "applicantId_example" // string | The ID of the applicant whose document is being uploaded.
-    type_ := "type__example" // string | The type of document.
-    file := os.NewFile(1234, "some_file") // *os.File | The file to be uploaded.
-    side := "side_example" // string | Either the `front` or `back` of the document. (optional)
-    issuingCountry := "issuingCountry_example" // string | The issuing country of the document, a 3-letter ISO code. (optional)
+    inlineObject := TODO // InlineObject | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.UploadDocument(context.Background()).ApplicantId(applicantId).Type_(type_).File(file).Side(side).IssuingCountry(issuingCountry).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.UploadDocument(context.Background()).InlineObject(inlineObject).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UploadDocument``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2578,11 +2574,7 @@ Other parameters are passed through a pointer to a apiUploadDocumentRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicantId** | **string** | The ID of the applicant whose document is being uploaded. | 
- **type_** | **string** | The type of document. | 
- **file** | ***os.File** | The file to be uploaded. | 
- **side** | **string** | Either the &#x60;front&#x60; or &#x60;back&#x60; of the document. | 
- **issuingCountry** | **string** | The issuing country of the document, a 3-letter ISO code. | 
+ **inlineObject** | [**InlineObject**](InlineObject.md) |  | 
 
 ### Return type
 
@@ -2604,7 +2596,7 @@ Name | Type | Description  | Notes
 
 ## UploadLivePhoto
 
-> LivePhoto UploadLivePhoto(ctx).ApplicantId(applicantId).File(file).AdvancedValidation(advancedValidation).Execute()
+> LivePhoto UploadLivePhoto(ctx).InlineObject1(inlineObject1).Execute()
 
 Upload live photo
 
@@ -2619,17 +2611,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/alpacahq/go-onfido-openapi/v3"
+    openapiclient "./openapi"
 )
 
 func main() {
-    applicantId := "applicantId_example" // string | 
-    file := os.NewFile(1234, "some_file") // *os.File | The file to be uploaded.
-    advancedValidation := true // bool | Validates that the live photo contains exactly one face. (optional) (default to true)
+    inlineObject1 := TODO // InlineObject1 | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.UploadLivePhoto(context.Background()).ApplicantId(applicantId).File(file).AdvancedValidation(advancedValidation).Execute()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.UploadLivePhoto(context.Background()).InlineObject1(inlineObject1).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UploadLivePhoto``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2650,9 +2640,7 @@ Other parameters are passed through a pointer to a apiUploadLivePhotoRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicantId** | **string** |  | 
- **file** | ***os.File** | The file to be uploaded. | 
- **advancedValidation** | **bool** | Validates that the live photo contains exactly one face. | [default to true]
+ **inlineObject1** | [**InlineObject1**](InlineObject1.md) |  | 
 
 ### Return type
 
