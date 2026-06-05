@@ -121,6 +121,91 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
+			"DefaultApiService.CreateWorkflowRun": {
+				{
+					URL: "https://api.{region}.onfido.com/v3.6",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"region": ServerVariable{
+							Description: "No description provided",
+							DefaultValue: "eu",
+							EnumValues: []string{
+								"eu",
+								"us",
+								"ca",
+							},
+						},
+					},
+				},
+			},
+			"DefaultApiService.DownloadEvidenceFolder": {
+				{
+					URL: "https://api.{region}.onfido.com/v3.6",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"region": ServerVariable{
+							Description: "No description provided",
+							DefaultValue: "eu",
+							EnumValues: []string{
+								"eu",
+								"us",
+								"ca",
+							},
+						},
+					},
+				},
+			},
+			"DefaultApiService.DownloadSignedEvidenceFile": {
+				{
+					URL: "https://api.{region}.onfido.com/v3.6",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"region": ServerVariable{
+							Description: "No description provided",
+							DefaultValue: "eu",
+							EnumValues: []string{
+								"eu",
+								"us",
+								"ca",
+							},
+						},
+					},
+				},
+			},
+			"DefaultApiService.FindWorkflowRun": {
+				{
+					URL: "https://api.{region}.onfido.com/v3.6",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"region": ServerVariable{
+							Description: "No description provided",
+							DefaultValue: "eu",
+							EnumValues: []string{
+								"eu",
+								"us",
+								"ca",
+							},
+						},
+					},
+				},
+			},
+			"DefaultApiService.ListWorkflowRuns": {
+				{
+					URL: "https://api.{region}.onfido.com/v3.6",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"region": ServerVariable{
+							Description: "No description provided",
+							DefaultValue: "eu",
+							EnumValues: []string{
+								"eu",
+								"us",
+								"ca",
+							},
+						},
+					},
+				},
+			},
 		},
 	}
 	return cfg

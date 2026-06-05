@@ -848,6 +848,271 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Unexpected error
       summary: Generate a SDK token
+  /workflow_runs:
+    get:
+      description: |
+        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
+      operationId: list_workflow_runs
+      parameters:
+      - description: "The number of the page to be retrieved. If not specified, defaults\
+          \ to 1."
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+      - description: "A list of comma separated status values to filter the results.\
+          \ Possible values are 'processing', 'awaiting_input', 'approved', 'declined',\
+          \ 'review', 'abandoned' and 'error'."
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A ISO-8601 date to filter results with a created date greater
+          than (after) the one provided.
+        explode: true
+        in: query
+        name: created_at_gt
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: A ISO-8601 date to filter results with a created date less than
+          (before) the one provided.
+        explode: true
+        in: query
+        name: created_at_lt
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "A string with the value 'desc' or 'asc' that allows to sort\
+          \ the returned list by the completed datetime either descending or ascending,\
+          \ respectively. If not specified, defaults to 'desc'."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: desc
+          enum:
+          - desc
+          - asc
+          type: string
+        style: form
+      - description: the applicant's id.
+        explode: true
+        in: query
+        name: applicant_id
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: A list of tags to filter the results.
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/workflow_run'
+                title: Workflow runs
+                type: array
+          description: An array of Workflow Run objects matching the query parameters.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: List Workflow Runs
+    post:
+      description: |
+        Creates and starts a Workflow Run. Returns a Workflow Run object.
+      operationId: create_workflow_run
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflow_run_builder'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflow_run'
+          description: A Workflow Run object.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a Workflow Run
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
+  /workflow_runs/{workflow_run_id}:
+    get:
+      description: |
+        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
+      operationId: find_workflow_run
+      parameters:
+      - description: The unique identifier of the Workflow Run.
+        explode: false
+        in: path
+        name: workflow_run_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflow_run'
+          description: A Workflow Run object.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Retrieve Workflow Run
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
+  /workflow_runs/{workflow_run_id}/signed_evidence_file:
+    get:
+      description: |
+        Retrieves the signed evidence file for the designated Workflow Run
+      operationId: download_signed_evidence_file
+      parameters:
+      - description: Workflow Run ID
+        explode: false
+        in: path
+        name: workflow_run_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/pdf:
+              schema:
+                format: binary
+                type: string
+          description: The signed evidence PDF binary data.
+        "302":
+          description: Found
+          headers:
+            Location:
+              description: Link to the signed evidence file PDF.
+              explode: false
+              schema:
+                format: uri
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Retrieve Workflow Run Evidence Summary File
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
+  /workflow_runs/{workflow_run_id}/evidence_folder:
+    get:
+      description: |
+        Retrieves the evidence folder for the designated Workflow Run
+      operationId: download_evidence_folder
+      parameters:
+      - description: Workflow Run ID
+        explode: false
+        in: path
+        name: workflow_run_id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/zip:
+              schema:
+                format: binary
+                type: string
+          description: The evidence folder binary data.
+        "302":
+          description: Found
+          headers:
+            Location:
+              description: Link to the evidence folder.
+              explode: false
+              schema:
+                format: uri
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Retrieve Workflow Run Evidence Folder
+    servers:
+    - url: "https://api.{region}.onfido.com/v3.6"
+      variables:
+        region:
+          default: eu
+          enum:
+          - eu
+          - us
+          - ca
 components:
   requestBodies:
     inline_object_1:
@@ -1799,6 +2064,160 @@ components:
       required:
       - applicant_id
       - file
+      type: object
+    workflow_run_link:
+      properties:
+        url:
+          description: Link to access the Workflow Run without the need to integrate
+            with Onfido's SDKs.
+          type: string
+        completed_redirect_url:
+          description: "When the interactive section of the Workflow Run has completed\
+            \ successfully, the user will be redirected to this URL instead of seeing\
+            \ the default Onfido 'thank you' page."
+          nullable: true
+          type: string
+        expired_redirect_url:
+          description: "When the link has expired, the user will be immediately redirected\
+            \ to this URL instead of seeing the default Onfido error message."
+          nullable: true
+          type: string
+        expires_at:
+          description: Date and time when the link will expire.
+          format: date-time
+          nullable: true
+          type: string
+        language:
+          description: The code for the language when the workflow run is acessed
+            using the link.
+          enum:
+          - en_US
+          - de_DE
+          - es_ES
+          - fr_FR
+          - it_IT
+          - pt_PT
+          - nl_NL
+          nullable: true
+          type: string
+    workflow_run_shared:
+      properties:
+        applicant_id:
+          description: The unique identifier for the Applicant.
+          format: uuid
+          type: string
+        workflow_id:
+          description: The unique identifier for the Workflow.
+          format: uuid
+          type: string
+        tags:
+          description: Tags or labels assigned to the workflow run.
+          items:
+            maxLength: 128
+            minLength: 1
+            type: string
+          maxItems: 30
+          nullable: true
+          type: array
+        customer_user_id:
+          description: Customer-provided user identifier.
+          maxLength: 256
+          type: string
+        link:
+          $ref: '#/components/schemas/workflow_run_shared_link'
+        created_at:
+          description: The date and time when the Workflow Run was created.
+          format: date-time
+          type: string
+        updated_at:
+          description: The date and time when the Workflow Run was last updated.
+          format: date-time
+          type: string
+      required:
+      - applicant_id
+      - workflow_id
+      type: object
+    workflow_run_status:
+      enum:
+      - processing
+      - awaiting_input
+      - awaiting_client_input
+      - approved
+      - declined
+      - review
+      - abandoned
+      - error
+      type: string
+    workflow_run_error:
+      properties:
+        type:
+          description: The type of error.
+          type: string
+        message:
+          description: A textual description of the error.
+          type: string
+      type: object
+    workflow_run_response:
+      properties:
+        id:
+          description: The unique identifier for the Workflow Run.
+          format: uuid
+          type: string
+        workflow_version_id:
+          description: The identifier for the Workflow version.
+          type: integer
+        dashboard_url:
+          description: The URL for viewing the Workflow Run results on your Onfido
+            Dashboard.
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/workflow_run_status'
+          description: The status of the Workflow Run.
+        output:
+          description: Output object contains all of the properties configured on
+            the Workflow version.
+          type: object
+        reasons:
+          description: The reasons the Workflow Run outcome was reached. Configurable
+            when creating the Workflow version.
+          items:
+            type: string
+          type: array
+        error:
+          $ref: '#/components/schemas/workflow_run_response_error'
+        sdk_token:
+          description: Client token to use when loading this workflow run in the Onfido
+            SDK.
+          nullable: true
+          type: string
+      required:
+      - id
+      type: object
+    workflow_run:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_shared'
+      - $ref: '#/components/schemas/workflow_run_response'
+    workflow_run_request:
+      properties:
+        custom_data:
+          additionalProperties: true
+          description: Object with Custom Input Data to be used in the Workflow Run.
+          type: object
+      type: object
+    workflow_run_builder:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_shared'
+      - $ref: '#/components/schemas/workflow_run_request'
+    workflow_run_shared_link:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_link'
+      description: Object for the configuration of the Workflow Run link.
+      type: object
+    workflow_run_response_error:
+      allOf:
+      - $ref: '#/components/schemas/workflow_run_error'
+      description: Error object. Only set when the Workflow Run status is 'error'.
       type: object
   securitySchemes:
     Token:

@@ -90,3 +90,12 @@ paths:
   # SDK Tokens
   /sdk_token:
     $ref: paths/sdk_tokens.yaml#/sdk_token
+  # Workflow Runs (Onfido Public API v3.6 — path-level servers in paths/workflow_runs.yaml)
+  /workflow_runs:
+    $ref: paths/workflow_runs.yaml#/workflow_runs
+  /workflow_runs/{workflow_run_id}:
+    $ref: paths/workflow_runs.yaml#/retrieve
+  /workflow_runs/{workflow_run_id}/signed_evidence_file:
+    $ref: paths/workflow_runs.yaml#/signed_evidence_file
+  /workflow_runs/{workflow_run_id}/evidence_folder:
+    $ref: paths/workflow_runs.yaml#/evidence_folder

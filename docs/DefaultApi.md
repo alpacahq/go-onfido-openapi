@@ -8,13 +8,16 @@ Method | HTTP request | Description
 [**CreateApplicant**](DefaultApi.md#CreateApplicant) | **Post** /applicants | Create Applicant
 [**CreateCheck**](DefaultApi.md#CreateCheck) | **Post** /checks | Create a check
 [**CreateWebhook**](DefaultApi.md#CreateWebhook) | **Post** /webhooks | Create a webhook
+[**CreateWorkflowRun**](DefaultApi.md#CreateWorkflowRun) | **Post** /workflow_runs | Create a Workflow Run
 [**DeleteWebhook**](DefaultApi.md#DeleteWebhook) | **Delete** /webhooks/{webhook_id} | Delete a webhook
 [**DestroyApplicant**](DefaultApi.md#DestroyApplicant) | **Delete** /applicants/{applicant_id} | Delete Applicant
 [**DownloadCheck**](DefaultApi.md#DownloadCheck) | **Get** /checks/{check_id}/download | Download a PDF of the check
 [**DownloadDocument**](DefaultApi.md#DownloadDocument) | **Get** /documents/{document_id}/download | Download a documents raw data
+[**DownloadEvidenceFolder**](DefaultApi.md#DownloadEvidenceFolder) | **Get** /workflow_runs/{workflow_run_id}/evidence_folder | Retrieve Workflow Run Evidence Folder
 [**DownloadLivePhoto**](DefaultApi.md#DownloadLivePhoto) | **Get** /live_photos/{live_photo_id}/download | Download live photo
 [**DownloadLiveVideo**](DefaultApi.md#DownloadLiveVideo) | **Get** /live_videos/{live_video_id}/download | Download live video
 [**DownloadLiveVideoFrame**](DefaultApi.md#DownloadLiveVideoFrame) | **Get** /live_videos/{live_video_id}/frame | Download live video frame
+[**DownloadSignedEvidenceFile**](DefaultApi.md#DownloadSignedEvidenceFile) | **Get** /workflow_runs/{workflow_run_id}/signed_evidence_file | Retrieve Workflow Run Evidence Summary File
 [**EditWebhook**](DefaultApi.md#EditWebhook) | **Put** /webhooks/{webhook_id} | Edit a webhook
 [**FindAddresses**](DefaultApi.md#FindAddresses) | **Get** /addresses/pick | Search for addresses by postcode
 [**FindApplicant**](DefaultApi.md#FindApplicant) | **Get** /applicants/{applicant_id} | Retrieve Applicant
@@ -24,6 +27,7 @@ Method | HTTP request | Description
 [**FindLiveVideo**](DefaultApi.md#FindLiveVideo) | **Get** /live_videos/{live_video_id} | Retrieve live video
 [**FindReport**](DefaultApi.md#FindReport) | **Get** /reports/{report_id} | A single report can be retrieved using this endpoint with the corresponding unique identifier.
 [**FindWebhook**](DefaultApi.md#FindWebhook) | **Get** /webhooks/{webhook_id} | Retrieve a Webhook
+[**FindWorkflowRun**](DefaultApi.md#FindWorkflowRun) | **Get** /workflow_runs/{workflow_run_id} | Retrieve Workflow Run
 [**GenerateSdkToken**](DefaultApi.md#GenerateSdkToken) | **Post** /sdk_token | Generate a SDK token
 [**ListApplicants**](DefaultApi.md#ListApplicants) | **Get** /applicants | List Applicants
 [**ListChecks**](DefaultApi.md#ListChecks) | **Get** /checks | Retrieve Checks
@@ -32,6 +36,7 @@ Method | HTTP request | Description
 [**ListLiveVideos**](DefaultApi.md#ListLiveVideos) | **Get** /live_videos | List live videos
 [**ListReports**](DefaultApi.md#ListReports) | **Get** /reports | All the reports belonging to a particular check can be listed from this endpoint.
 [**ListWebhooks**](DefaultApi.md#ListWebhooks) | **Get** /webhooks | List webhooks
+[**ListWorkflowRuns**](DefaultApi.md#ListWorkflowRuns) | **Get** /workflow_runs | List Workflow Runs
 [**RestoreApplicant**](DefaultApi.md#RestoreApplicant) | **Post** /applicants/{applicant_id}/restore | Restore Applicant
 [**ResumeCheck**](DefaultApi.md#ResumeCheck) | **Post** /checks/{check_id}/resume | Resume a Check
 [**ResumeReport**](DefaultApi.md#ResumeReport) | **Post** /reports/{report_id}/resume | This endpoint is for resuming individual paused reports.
@@ -299,6 +304,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+
+## CreateWorkflowRun
+
+> WorkflowRun CreateWorkflowRun(ctx).WorkflowRunBuilder(workflowRunBuilder).Execute()
+
+Create a Workflow Run
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    workflowRunBuilder := *openapiclient.NewWorkflowRunBuilder("ApplicantId_example", "WorkflowId_example") // WorkflowRunBuilder | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.CreateWorkflowRun(context.Background()).WorkflowRunBuilder(workflowRunBuilder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateWorkflowRun``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWorkflowRun`: WorkflowRun
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CreateWorkflowRun`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWorkflowRunRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workflowRunBuilder** | [**WorkflowRunBuilder**](WorkflowRunBuilder.md) |  | 
+
+### Return type
+
+[**WorkflowRun**](WorkflowRun.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
 ## DeleteWebhook
 
 > DeleteWebhook(ctx, webhookId).Execute()
@@ -565,6 +636,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+
+## DownloadEvidenceFolder
+
+> *os.File DownloadEvidenceFolder(ctx, workflowRunId).Execute()
+
+Retrieve Workflow Run Evidence Folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    workflowRunId := TODO // string | Workflow Run ID
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadEvidenceFolder(context.Background(), workflowRunId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadEvidenceFolder``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DownloadEvidenceFolder`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DownloadEvidenceFolder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workflowRunId** | [**string**](.md) | Workflow Run ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDownloadEvidenceFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/zip, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
 ## DownloadLivePhoto
 
 > *os.File DownloadLivePhoto(ctx, livePhotoId).Execute()
@@ -774,6 +915,76 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
+
+
+## DownloadSignedEvidenceFile
+
+> *os.File DownloadSignedEvidenceFile(ctx, workflowRunId).Execute()
+
+Retrieve Workflow Run Evidence Summary File
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    workflowRunId := TODO // string | Workflow Run ID
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.DownloadSignedEvidenceFile(context.Background(), workflowRunId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DownloadSignedEvidenceFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DownloadSignedEvidenceFile`: *os.File
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DownloadSignedEvidenceFile`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workflowRunId** | [**string**](.md) | Workflow Run ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDownloadSignedEvidenceFileRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[***os.File**](*os.File.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/pdf, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 ## EditWebhook
 
@@ -1385,6 +1596,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+
+## FindWorkflowRun
+
+> WorkflowRun FindWorkflowRun(ctx, workflowRunId).Execute()
+
+Retrieve Workflow Run
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    workflowRunId := TODO // string | The unique identifier of the Workflow Run.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.FindWorkflowRun(context.Background(), workflowRunId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.FindWorkflowRun``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindWorkflowRun`: WorkflowRun
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.FindWorkflowRun`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workflowRunId** | [**string**](.md) | The unique identifier of the Workflow Run. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindWorkflowRunRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**WorkflowRun**](WorkflowRun.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
 ## GenerateSdkToken
 
 > SdkToken GenerateSdkToken(ctx).SdkToken(sdkToken).Execute()
@@ -1897,6 +2178,85 @@ Other parameters are passed through a pointer to a apiListWebhooksRequest struct
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
+
+
+## ListWorkflowRuns
+
+> []WorkflowRun ListWorkflowRuns(ctx).Page(page).Status(status).CreatedAtGt(createdAtGt).CreatedAtLt(createdAtLt).Sort(sort).ApplicantId(applicantId).Tags(tags).Execute()
+
+List Workflow Runs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    page := int32(56) // int32 | The number of the page to be retrieved. If not specified, defaults to 1. (optional) (default to 1)
+    status := "status_example" // string | A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'. (optional)
+    createdAtGt := time.Now() // string | A ISO-8601 date to filter results with a created date greater than (after) the one provided. (optional)
+    createdAtLt := time.Now() // string | A ISO-8601 date to filter results with a created date less than (before) the one provided. (optional)
+    sort := "sort_example" // string | A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'. (optional) (default to "desc")
+    applicantId := TODO // string | the applicant's id. (optional)
+    tags := []string{"Inner_example"} // []string | A list of tags to filter the results. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DefaultApi.ListWorkflowRuns(context.Background()).Page(page).Status(status).CreatedAtGt(createdAtGt).CreatedAtLt(createdAtLt).Sort(sort).ApplicantId(applicantId).Tags(tags).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListWorkflowRuns``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWorkflowRuns`: []WorkflowRun
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ListWorkflowRuns`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWorkflowRunsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int32** | The number of the page to be retrieved. If not specified, defaults to 1. | [default to 1]
+ **status** | **string** | A list of comma separated status values to filter the results. Possible values are &#39;processing&#39;, &#39;awaiting_input&#39;, &#39;approved&#39;, &#39;declined&#39;, &#39;review&#39;, &#39;abandoned&#39; and &#39;error&#39;. | 
+ **createdAtGt** | **string** | A ISO-8601 date to filter results with a created date greater than (after) the one provided. | 
+ **createdAtLt** | **string** | A ISO-8601 date to filter results with a created date less than (before) the one provided. | 
+ **sort** | **string** | A string with the value &#39;desc&#39; or &#39;asc&#39; that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to &#39;desc&#39;. | [default to &quot;desc&quot;]
+ **applicantId** | [**string**](string.md) | the applicant&#39;s id. | 
+ **tags** | **[]string** | A list of tags to filter the results. | 
+
+### Return type
+
+[**[]WorkflowRun**](WorkflowRun.md)
+
+### Authorization
+
+[Token](../README.md#Token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 ## RestoreApplicant
 
