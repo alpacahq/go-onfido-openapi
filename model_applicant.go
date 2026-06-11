@@ -15,6 +15,18 @@ import (
 	"time"
 )
 
+// ApplicantLocation is the end user's location for Onfido API v3.4+ (US biometric privacy and related checks).
+type ApplicantLocation struct {
+	IpAddress          *string `json:"ip_address,omitempty"`
+	CountryOfResidence *string `json:"country_of_residence,omitempty"`
+}
+
+// ApplicantConsent records consent for Onfido processing (API v3.4+ applicant resource).
+type ApplicantConsent struct {
+	Name    *string `json:"name,omitempty"`
+	Granted *bool   `json:"granted,omitempty"`
+}
+
 // Applicant struct for Applicant
 type Applicant struct {
 	// The unique identifier for the applicant. Read-only.
@@ -34,9 +46,12 @@ type Applicant struct {
 	// The applicant’s email address. Required if doing a US check, or a UK check for which `applicant_provides_data` is `true`.
 	Email *string `json:"email,omitempty"`
 	// The applicant’s date of birth
-	Dob *string `json:"dob,omitempty"`
-	Address *Address `json:"address,omitempty"`
+	Dob       *string     `json:"dob,omitempty"`
+	Address   *Address    `json:"address,omitempty"`
 	IdNumbers *[]IdNumber `json:"id_numbers,omitempty"`
+	// Location and Consents are required for API v3.4+ when creating checks with document / facial similarity (see Onfido migration guide).
+	Location *ApplicantLocation  `json:"location,omitempty"`
+	Consents *[]ApplicantConsent `json:"consents,omitempty"`
 }
 
 // NewApplicant instantiates a new Applicant object
@@ -443,6 +458,12 @@ func (o Applicant) MarshalJSON() ([]byte, error) {
 	if o.IdNumbers != nil {
 		toSerialize["id_numbers"] = o.IdNumbers
 	}
+	if o.Location != nil {
+		toSerialize["location"] = o.Location
+	}
+	if o.Consents != nil {
+		toSerialize["consents"] = o.Consents
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -481,5 +502,3 @@ func (v *NullableApplicant) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
